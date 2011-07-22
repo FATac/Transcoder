@@ -1,0 +1,374 @@
+package org.i2cat.tapies.transcoder.transco;
+
+//File name: $HeadURL$
+//Revision: $Revision$
+//Last modified: $Date$
+//Modified by: $Author$
+import java.io.File;
+import java.io.IOException;
+import java.util.Properties;
+
+import org.i2cat.tapies.transcoder.analysis.GetContainerInfo;
+import org.i2cat.tapies.transcoder.entities.SubTask;
+import org.i2cat.tapies.transcoder.entities.SubTaskInputParameters;
+import org.i2cat.tapies.transcoder.entities.TaskInputParameters;
+import org.i2cat.tapies.transcoder.entities.TranscodingTask;
+import org.i2cat.tapies.transcoder.transco.extras.tools.ImageTool;
+import org.i2cat.tapies.transcoder.transco.extras.tools.SubtitleTool;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+public class TranscoTest  {
+	
+	private static TranscodingTask tt;
+	private static String transcodedVideoFilePath = "rsc/tmp/";
+	private static int i = 0;
+	private static Properties srcProp;
+	
+	@BeforeClass
+	public static void setUp() {
+
+		try {
+			srcProp = new GetContainerInfo().getResolution("test.dv");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			Assert.fail("Problem with src file!");
+		}
+		
+		// Generic transco properties, entity will be filled later
+		File fileIn = new File("test.dv");
+				
+		tt = new TranscodingTask();
+		tt.setId(0);
+		SubTask subtask1 = new SubTask();
+
+		TaskInputParameters cip = new TaskInputParameters();
+		cip.setOriginalVideoPath(fileIn.getAbsolutePath());
+		tt.setCommonInputParameters(cip);
+		SubTaskInputParameters sip = new SubTaskInputParameters();
+		
+		subtask1.setInparameters(sip);
+		subtask1.setId(0);
+		tt.putSubTask(subtask1);
+	}
+	
+	@Test
+	public void testTranscodeWebM() {
+		
+		SubTask subtask = tt.getSubTask(0);
+		File fileOut = new File(transcodedVideoFilePath + 
+				"tmp" + i + ".webm");
+		try {
+			fileOut.createNewFile();
+			fileOut.deleteOnExit();
+		} catch (IOException e) {
+			Assert.fail("Problem creating output file");
+		}
+		
+		SubTaskInputParameters in = subtask.getInparameters();
+		in.setContainer("webm");
+		in.setOutVideoPath(fileOut.getAbsolutePath());
+		
+		// Audio
+//		in.setAudioBitrate("128000");
+//		in.setAudioChannels("2");
+		in.setAudioCodec("libvorbis");
+//		in.setAudioSampleRate("44100");
+
+		// Video
+		in.setDeinterlace(true);
+		in.setFps("25");
+
+		in.setVideoBitrate("1000000");
+		in.setVideoCodec("libvpx");
+		
+		subtask.setInparameters(in);
+		
+		tt.putSubTask(subtask);
+		tt.setId(i);
+		i++;
+		
+		NewTranscoder transco = new NewTranscoder();
+		try {
+			transco.transcode(tt);
+		} catch (Exception e) {
+			e.printStackTrace();
+			Assert.fail("Failed while transcoding");
+		} 
+	}	
+
+	@Test
+	public void testTranscode() {
+		
+		SubTask subtask = tt.getSubTask(0);
+		File fileOut = new File(transcodedVideoFilePath + 
+				"tmp" + i + ".mp4");
+		try {
+			fileOut.createNewFile();
+			fileOut.deleteOnExit();
+		} catch (IOException e) {
+			Assert.fail("Problem creating output file");
+		}
+		
+		SubTaskInputParameters in = subtask.getInparameters();
+		// Audio
+		in.setAudioBitrate("128000");
+		in.setAudioChannels("2");
+		in.setAudioCodec("libfaac");
+		in.setAudioSampleRate("44100");
+
+		// Video
+		in.setDeinterlace(true);
+		in.setFps("25");
+
+		in.setVideoCodec("libx264");
+		in.setVideoBitrateTolerance("100000");
+		in.setPresetFile("h264presets.txt");
+		
+		in.setContainer("mp4");
+		in.setOutVideoPath(fileOut.getAbsolutePath());		
+		subtask.setInparameters(in);
+		
+		tt.putSubTask(subtask);
+		tt.setId(i);
+		i++;
+		
+		NewTranscoder transco = new NewTranscoder();
+		try {
+			transco.transcode(tt);
+		} catch (Exception e) {
+			e.printStackTrace();
+			Assert.fail("Failed while transcoding");
+		} 
+	}
+	
+
+	
+	
+
+	@Test
+	public void testTranscodeResizing() {
+
+		SubTask subtask = tt.getSubTask(0);
+		File fileOut = new File(transcodedVideoFilePath + 
+				"tmp" + i + ".mp4");
+		try {
+			fileOut.createNewFile();
+			fileOut.deleteOnExit();
+		} catch (IOException e) {
+			e.printStackTrace();
+			Assert.fail("Problem creating output file");
+		}
+		
+		SubTaskInputParameters in = subtask.getInparameters();
+		in.setContainer("mp4");
+		in.setOutVideoPath(fileOut.getAbsolutePath());
+		
+		
+		if(srcProp.containsKey("height") && srcProp.containsKey("width")) {
+			// Let's reduce the height
+			Integer h = Integer.parseInt(srcProp.get("height").toString());
+			h=h/2;
+			in.setHeight(h.toString());
+			
+			// Let's reduce the width
+			Integer w = Integer.parseInt(srcProp.get("width").toString());
+			w=w/2;
+			in.setWidth(w.toString());
+		}
+		
+		subtask.setInparameters(in);
+		
+		tt.putSubTask(subtask);
+		tt.setId(i);
+		i++;
+		
+		NewTranscoder transco = new NewTranscoder();
+		try {
+			transco.transcode(tt);
+		} catch (Exception e) {
+			e.printStackTrace();
+			Assert.fail("Failed while transcoding and resizing");
+		} 
+	}
+	
+	@Test
+	public void testTranscodeSubtitleTool() {
+		
+		SubTask subtask = tt.getSubTask(0);
+		File fileOut = new File(transcodedVideoFilePath + 
+				"tmp" + i + ".mp4");
+		try {
+			fileOut.createNewFile();
+			fileOut.deleteOnExit();
+		} catch (IOException e) {
+			Assert.fail("Problem creating output file");
+		}
+		
+		SubTaskInputParameters in = subtask.getInparameters();
+		in.setContainer("mp4");
+		in.setOutVideoPath(fileOut.getAbsolutePath());
+		in.setHeight(null);
+		in.setWidth(null);
+		
+		in.clearTools();
+		
+		SubtitleTool subtitleTool = new SubtitleTool(
+				"rsc/subs/beautiful_mind_spanish.sub");
+		in.putTool(subtitleTool);
+		
+		subtask.setInparameters(in);
+		
+		tt.putSubTask(subtask);
+		tt.setId(i);
+		i++;
+		
+		NewTranscoder transco = new NewTranscoder();
+		try {
+			transco.transcode(tt);
+		} catch (Exception e) {
+			e.printStackTrace();
+			Assert.fail("Failed while transcoding and adding subtitles");
+		} 
+		
+	}
+	
+	@Test
+	public void testTranscodeResizingSubtitleTool() {
+		SubTask subtask = tt.getSubTask(0);
+		File fileOut = new File(transcodedVideoFilePath + 
+				"tmp" + i + ".mp4");
+		try {
+			fileOut.createNewFile();
+			fileOut.deleteOnExit();
+		} catch (IOException e) {
+			e.printStackTrace();
+			Assert.fail("Problem creating output file");
+		}
+		
+		SubTaskInputParameters in = subtask.getInparameters();
+		in.setContainer("mp4");
+		in.setOutVideoPath(fileOut.getAbsolutePath());
+		
+		
+		if(srcProp.containsKey("height") && srcProp.containsKey("width")) {
+			// Let's reduce the height
+			Integer h = Integer.parseInt(srcProp.get("height").toString());
+			h=h/2;
+			in.setHeight(h.toString());
+			
+			// Let's reduce the width
+			Integer w = Integer.parseInt(srcProp.get("width").toString());
+			w=w/2;
+			in.setWidth(w.toString());
+		}
+		
+
+		
+		in.clearTools();
+		
+		SubtitleTool subtitleTool = new SubtitleTool(
+				"rsc/subs/Lost.S05E09.HDTV.XviD-NoTV_By.Thinkywinki.srt");
+		in.putTool(subtitleTool);
+		
+		subtask.setInparameters(in);
+		
+		tt.putSubTask(subtask);
+		tt.setId(i);
+		i++;
+		
+		NewTranscoder transco = new NewTranscoder();
+		try {
+			transco.transcode(tt);
+		} catch (Exception e) {
+			e.printStackTrace();
+			Assert.fail("Failed while transcoding + subtitles + resizing");
+		} 
+	}
+
+	@Test
+	public void testTranscodingImageTool() {
+		SubTask subtask = tt.getSubTask(0);
+		File fileOut = new File(transcodedVideoFilePath + 
+				"tmp" + i + ".mp4");
+		try {
+			fileOut.createNewFile();
+			fileOut.deleteOnExit();
+		} catch (IOException e) {
+			e.printStackTrace();
+			Assert.fail("Problem creating output file");
+		}
+		
+		SubTaskInputParameters in = subtask.getInparameters();
+		in.setContainer("mp4");
+		in.setOutVideoPath(fileOut.getAbsolutePath());
+		in.setHeight(null);
+		in.setWidth(null);
+
+		
+		in.clearTools();
+		ImageTool imgTool = new ImageTool("rsc/img/logo_anella.png", 50, 50, 
+											ImageTool.RIGHT_INF_CORNER_50);
+		in.putTool(imgTool);
+		
+		subtask.setInparameters(in);
+		
+		tt.putSubTask(subtask);
+		tt.setId(i);
+		i++;
+		
+		NewTranscoder transco = new NewTranscoder();
+		try {
+			transco.transcode(tt);
+		} catch (Exception e) {
+			e.printStackTrace();
+			Assert.fail("Failed while transcoding + logo");
+		} 
+	}
+
+	@Test
+	public void testTranscodingResizingImageTool() {
+		SubTask subtask = tt.getSubTask(0);
+		File fileOut = new File(transcodedVideoFilePath + 
+				"tmp" + i + ".mp4");
+		fileOut.deleteOnExit();
+		
+		SubTaskInputParameters in = subtask.getInparameters();
+		in.setContainer("mp4");
+		in.setOutVideoPath(fileOut.getAbsolutePath());
+		
+		
+		if(srcProp.containsKey("height") && srcProp.containsKey("width")) {
+			// Let's reduce the height
+			Integer h = Integer.parseInt(srcProp.get("height").toString());
+			h=h/2;
+			in.setHeight(h.toString());
+			
+			// Let's reduce the width
+			Integer w = Integer.parseInt(srcProp.get("width").toString());
+			w=w/2;
+			in.setWidth(w.toString());
+		}
+		
+		subtask.setInparameters(in);
+		
+		subtask.getInparameters().clearTools();
+		ImageTool imgTool = new ImageTool("rsc/img/logo_anella.png", 50, 50, 
+											ImageTool.RIGHT_INF_CORNER_50);
+		subtask.getInparameters().putTool(imgTool);
+		
+		tt.putSubTask(subtask);
+		tt.setId(i);
+		i++;
+		
+		NewTranscoder transco = new NewTranscoder();
+		try {
+			transco.transcode(tt);
+		} catch (Exception e) {
+			e.printStackTrace();
+			Assert.fail("Failed while transcoding + logo + resizing");
+		} 
+	}
+	
+}

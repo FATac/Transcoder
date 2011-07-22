@@ -1,0 +1,173 @@
+package org.i2cat.tapies.transcoder.configuration;
+
+//File name: $HeadURL: http://svn.i2cat.net/repos/Tapies/Transcoder/src/org/i2cat/tapies/transcoder/configuration/GetAvailableCodecs.java $
+//Revision: $Revision: 234 $
+//Last modified: $Date: 2011-07-05 11:04:47 +0200 (Tue, 05 Jul 2011) $
+//Modified by: $Author: javier_lopez $
+import java.util.Collections;
+import java.util.List;
+import java.util.Vector;
+
+import com.xuggle.xuggler.ICodec;
+import com.xuggle.xuggler.IContainerFormat;
+import com.xuggle.xuggler.ICodec.ID;
+
+/**
+ * Gives the codecs for MUX/DEMUX that XUGGLE has available.
+ * 
+ * @author $Author: javier_lopez $
+ * @version $Revision: 234 $
+ */
+public class GetXuggleSupportedFormats {
+
+	/**
+	 * Method that returns a list of strings that contains the supported output
+	 * containers
+	 * 
+	 * @return a list of strings with the supported containers.
+	 */
+	public static List<String> getSupportedOutputContainers(boolean hasCodecs) {
+		List<IContainerFormat> list = new Vector<IContainerFormat>(
+				IContainerFormat.getInstalledOutputFormats());
+		List<String> ret = new Vector<String>();
+		for (int i = 0; i < list.size(); i++) {
+			IContainerFormat icf = list.get(i);
+			
+			if (hasCodecs) {
+				// Check if this container contains codecs inside
+				if (getAllSupportedCodecsInContainer(icf.getOutputFormatShortName()).size() > 0) {
+					ret.add(icf.getOutputFormatShortName());
+				}
+				
+			} else {
+				ret.add(icf.getOutputFormatShortName());
+			}
+		}
+		Collections.sort(ret);
+		return ret;
+	}
+
+	/**
+	 * Method that gives all the supported codecs.
+	 * 
+	 * @return a list of strings with the supported codecs
+	 */
+	public static List<String> getAllSupportedCodecs() {
+		List<ICodec> codecs = new Vector<ICodec>(ICodec.getInstalledCodecs());
+	    List<String> ret = new Vector<String>();
+	    
+		for (int i = 0; i < codecs.size(); i++) {
+			if (codecs.get(i).canEncode()) {
+				ret.add(codecs.get(i).getName());
+			}
+		}
+		return ret;
+	}
+	
+	public static List<String> getAllSupportedCodecsInContainer(String shortNameContainer) {
+		
+	    List<String> ret = getAudioSupportedCodecsInContainer(shortNameContainer);
+	    ret.addAll(getVideoSupportedCodecsInContainer(shortNameContainer));
+
+	    return ret;	
+	}
+	
+	public static List<String> getAudioSupportedCodecsInContainer(String shortNameContainer) {
+		
+	    IContainerFormat format = IContainerFormat.make();
+	    format.setOutputFormat(shortNameContainer, null, null);
+
+	    List<ID> codecs = format.getOutputCodecsSupported();
+	    List<String> ret = new Vector<String>();
+
+	    for(ID id : codecs) {
+	      if (id != null) {
+	        ICodec codec = ICodec.findEncodingCodec(id);
+	        if (codec != null && codec.canEncode() && codec.getType().equals(ICodec.Type.CODEC_TYPE_AUDIO)) {
+	        	ret.add(codec.getName());
+	        }
+	      }
+	    } 
+	    
+	    // TODO Solve this workaround for webm container
+	    if (shortNameContainer.equals("webm"))
+	    	ret.add("libvorbis");
+	    
+	    return ret;	
+	}
+	
+	public static List<String> getVideoSupportedCodecsInContainer(String shortNameContainer) {
+		
+	    IContainerFormat format = IContainerFormat.make();
+	    format.setOutputFormat(shortNameContainer, null, null);
+
+	    List<ID> codecs = format.getOutputCodecsSupported();
+	    List<String> ret = new Vector<String>();
+
+	    for(ID id : codecs) {
+	      if (id != null) {
+	        ICodec codec = ICodec.findEncodingCodec(id);
+	        if (codec != null && codec.canEncode() && codec.getType().equals(ICodec.Type.CODEC_TYPE_VIDEO)) {
+	        	ret.add(codec.getName());
+	        }
+	      }
+	    } 
+	    
+	    // TODO Solve this workaround for webm container
+	    if (shortNameContainer.equals("webm"))
+	    	ret.add("libvpx");
+	    
+	    return ret;	
+	}
+
+	/**
+	 * Method that gives all the audio supported codecs.
+	 * 
+	 * @return a list of strings with the supported audio codecs.
+	 */
+	public static List<String> getAudioSupportedCodecs() {
+		List<ICodec> codecs = new Vector<ICodec>(ICodec.getInstalledCodecs());
+		List<String> ret = new Vector<String>();
+		for (int i = 0; i < codecs.size(); i++) {
+			if (codecs.get(i).getType() == com.xuggle.xuggler.ICodec.Type.CODEC_TYPE_AUDIO)
+				if (codecs.get(i).canEncode()) {
+					ret.add(codecs.get(i).getName());
+				}
+		}
+		return ret;
+	}
+
+	/**
+	 * Method that gives all the video supported codecs.
+	 * 
+	 * @return a list of strings with the supported video codecs.
+	 */
+	public static List<String> getVideoSupportedCodecs() {
+		List<ICodec> codecs = new Vector<ICodec>(ICodec.getInstalledCodecs());
+		List<String> ret = new Vector<String>();
+		for (int i = 0; i < codecs.size(); i++) {
+			if (codecs.get(i).getType() == com.xuggle.xuggler.ICodec.Type.CODEC_TYPE_VIDEO)
+				if (codecs.get(i).canEncode()) {
+					ret.add(codecs.get(i).getName());
+				}
+		}
+		return ret;
+	}
+
+	/**
+	 * Method that gives all the subtitle supported codecs.
+	 * 
+	 * @return a list of strings with the supported subtitle codecs.
+	 */
+	public static List<String> getSubtitleSupportedCodecs() {
+		List<ICodec> codecs = new Vector<ICodec>(ICodec.getInstalledCodecs());
+		List<String> ret = new Vector<String>();
+		for (int i = 0; i < codecs.size(); i++) {
+			if (codecs.get(i).getType() == com.xuggle.xuggler.ICodec.Type.CODEC_TYPE_SUBTITLE)
+				if (codecs.get(i).canEncode()) {
+					ret.add(codecs.get(i).getName());
+				}
+		}
+		return ret;
+	}
+}

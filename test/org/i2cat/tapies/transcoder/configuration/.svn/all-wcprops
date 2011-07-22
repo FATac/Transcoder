@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/repos/Tapies/!svn/ver/183/Transcoder/test/org/i2cat/tapies/transcoder/configuration
+END
+GetAvailableContainersTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/repos/Tapies/!svn/ver/237/Transcoder/test/org/i2cat/tapies/transcoder/configuration/GetAvailableContainersTest.java
+END
+GetAvailableCodecTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/Tapies/!svn/ver/237/Transcoder/test/org/i2cat/tapies/transcoder/configuration/GetAvailableCodecTest.java
+END

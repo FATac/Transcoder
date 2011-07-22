@@ -1,0 +1,66 @@
+package org.i2cat.tapies.transcoder.configuration;
+//File name: $HeadURL$
+//Revision: $Revision$
+//Last modified: $Date$
+//Modified by: $Author$
+import java.util.List;
+
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class GetAvailableCodecTest {
+
+	private Logger logger = LoggerFactory.getLogger(getClass());
+
+	/*
+	 * List of video codecs availables 
+	 */
+	@Test
+	public void getVideoCodecs() {
+
+		logger.info("Get video codecs");
+		List<String> sup4 = GetXuggleSupportedFormats.getVideoSupportedCodecs();
+		for (int i = 0; i < sup4.size(); i++) {
+			logger.debug(sup4.get(i));
+		}
+		logger.info("End video codecs\n");
+	}
+	
+	/*
+	 * List of audio codecs availables 
+	 */
+	@Test
+	public void getAudioCodecs() {
+		logger.info("Get audio codecs");
+		List<String> sup4 = GetXuggleSupportedFormats.getAudioSupportedCodecs();
+		for (int i = 0; i < sup4.size(); i++) {
+			logger.debug(sup4.get(i));
+		}
+		logger.info("End audio codecs\n");
+	}
+	
+	/*
+	 * List of all codecs availables 
+	 */
+	@Test
+	public void getAllCodecs() {
+		logger.info("Get all codecs");
+		List<String> sup4 = GetXuggleSupportedFormats.getAllSupportedCodecs();
+		for (int i = 0; i < sup4.size(); i++) {
+			logger.debug(sup4.get(i));
+		}
+		logger.info("End all codecs\n");
+
+	}
+
+	@Test
+	public void getSubtitleCodecs() {
+		logger.info("Get subtitle codecs");
+		List<String> sup4 = GetXuggleSupportedFormats.getSubtitleSupportedCodecs();
+		for (int i = 0; i < sup4.size(); i++) {
+			logger.debug(sup4.get(i));
+		}
+		logger.info("End sub codecs\n");
+	}
+}

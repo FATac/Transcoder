@@ -1,0 +1,265 @@
+package org.i2cat.tapies.transcoder.transco;
+
+//File name: $HeadURL$
+//Revision: $Revision$
+//Last modified: $Date$
+//Modified by: $Author$
+import java.io.File;
+import java.io.IOException;
+
+import org.i2cat.tapies.transcoder.entities.SubTask;
+import org.i2cat.tapies.transcoder.entities.SubTaskInputParameters;
+import org.i2cat.tapies.transcoder.entities.TaskInputParameters;
+import org.i2cat.tapies.transcoder.entities.TranscodingTask;
+import org.i2cat.tapies.transcoder.tasks.TaskManager;
+import org.i2cat.tapies.transcoder.transco.extras.tools.ImageTool;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class QueueTest {
+	
+	private Logger logger = LoggerFactory.getLogger(getClass());
+	private static String videoIn = "test.dv";
+	private static String videoOut = "rsc/tmp/tmp1.mp4";
+	private static String videoOut2 = "rsc/tmp/tmp2.mp4";
+	private static String videoOut3 = "rsc/tmp/tmp3.mp4";
+	private static String videoOut4 = "rsc/tmp/tmp4.ogv";
+	
+	@BeforeClass
+	public static void setUp() {
+		// Do tmp folder cleanup before starting these tests
+		File f = new File(videoOut);
+		if (f.exists())
+			f.delete();
+		
+		f = new File(videoOut2);
+		if (f.exists())
+			f.delete();
+		
+		f = new File(videoOut3);
+		if (f.exists())
+			f.delete();
+		
+		f = new File(videoOut4);
+		if (f.exists())
+			f.delete();
+		
+	}
+	
+	
+	/*
+	 * Transcode 3 videos with each specified configuration
+	 * using the task manager 
+	 */
+	@Test
+	public void transcodeWithQueues() {
+
+		// A SubTask could have a list of applied Tools
+		ImageTool imgTool = new ImageTool("rsc/img/logo_anella.png", 
+							50, 50, ImageTool.RIGHT_INF_CORNER_50);
+		
+		
+		
+		
+		
+		File fileIn = new File(videoIn);
+
+		// Let's create the subtask and set the input params
+		SubTaskInputParameters sip = new SubTaskInputParameters();
+
+		File fileOut = new File(videoOut);
+		try {
+			fileOut.createNewFile();
+		} catch (IOException e1) {
+			Assert.fail("Error creating " + videoOut);
+		}
+		fileOut.deleteOnExit();
+		sip.setOutVideoPath(fileOut.getAbsolutePath());
+		sip.setContainer("mp4");
+
+		// Audio
+		sip.setAudioBitrate("128000");
+		sip.setAudioChannels("2");
+		sip.setAudioCodec("libfaac");
+		sip.setAudioSampleRate("44100");
+
+		// Video
+		sip.setDeinterlace(true);
+		sip.setFps("25");
+		sip.setHeight("576");
+		sip.setWidth("720");
+		sip.setVideoBitrate("1000000");
+		sip.setVideoCodec("libx264");
+		sip.setVideoBitrateTolerance("100000");
+		sip.setPresetFile("h264presets.txt");
+		sip.putTool(imgTool);
+
+
+		SubTask subtask = new SubTask();
+		subtask.setInparameters(sip);
+		subtask.setId(0);
+		
+		// Let's create the subtask and set the input params
+		SubTaskInputParameters sip2 = new SubTaskInputParameters();
+
+		File fileOut2 = new File(videoOut2);
+		try {
+			fileOut2.createNewFile();
+		} catch (IOException e1) {
+			Assert.fail("Error creating " + videoOut2);
+		}
+		fileOut2.deleteOnExit();
+		sip2.setOutVideoPath(fileOut2.getAbsolutePath());
+		sip2.setContainer("mp4");
+
+		// Audio
+		sip2.setAudioBitrate("128000");
+		sip2.setAudioChannels("2");
+		sip2.setAudioCodec("libfaac");
+		sip2.setAudioSampleRate("44100");
+
+		// Video
+		sip2.setDeinterlace(true);
+		sip2.setFps("25");
+		sip2.setHeight("288");
+		sip2.setWidth("360");
+		sip2.setVideoBitrate("1000000");
+		sip2.setVideoCodec("libx264");
+		sip2.setVideoBitrateTolerance("100000");
+		sip2.setPresetFile("h264presets.txt");
+		sip2.putTool(imgTool);
+
+		SubTask subtask2 = new SubTask();
+		subtask2.setInparameters(sip2);
+		subtask2.setId(1);
+		
+		// Let's create the subtask and set the input params
+		SubTaskInputParameters sip3 = new SubTaskInputParameters();
+
+		File fileOut3 = new File(videoOut3);
+		try {
+			fileOut3.createNewFile();
+		} catch (IOException e1) {
+			Assert.fail("Error creating " + videoOut3);
+		}
+		fileOut3.deleteOnExit();
+		sip3.setOutVideoPath(fileOut3.getAbsolutePath());
+		sip3.setContainer("mp4");
+
+		// Audio
+		sip3.setAudioBitrate("128000");
+		sip3.setAudioChannels("2");
+		sip3.setAudioCodec("libfaac");
+		sip3.setAudioSampleRate("44100");
+
+		// Video
+		sip3.setDeinterlace(false);
+		sip3.setFps("25");
+		sip3.setHeight("864");
+		sip3.setWidth("1080");
+		sip3.setVideoBitrate("1000000");
+		sip3.setVideoCodec("libx264");
+		sip3.setVideoBitrateTolerance("100000");
+		sip3.setPresetFile("h264presets.txt");
+		sip3.putTool(imgTool);
+
+		SubTask subtask3 = new SubTask();
+		subtask3.setInparameters(sip3);
+		subtask3.setId(2);
+		
+		
+		// Let's create the common inputParams
+		TaskInputParameters cip = new TaskInputParameters();
+		cip.setOriginalVideoPath(fileIn.getAbsolutePath());
+		
+		// First Task
+		TranscodingTask tt = new TranscodingTask();
+		tt.setId(0);
+		
+		tt.putSubTask(subtask);
+		tt.putSubTask(subtask2);
+		tt.putSubTask(subtask3);
+		
+		tt.setCommonInputParameters(cip);
+		
+
+		
+				
+		// Now it's time to create a second transcoding task
+		// Let's create the subtask and set the input params
+		
+		SubTaskInputParameters sip4 = new SubTaskInputParameters();
+		File fileOut4 = new File(videoOut4);
+		try {
+			fileOut4.createNewFile();
+		} catch (IOException e1) {
+			Assert.fail("Error creating " + videoOut4);
+		}
+		fileOut4.deleteOnExit();
+		
+		sip4.setOutVideoPath(fileOut4.getAbsolutePath());
+		sip4.setContainer("ogv");
+		
+		// Audio
+		sip4.setAudioBitrate("128000");
+		sip4.setAudioChannels("2");
+		// El códec vorbis, no se tiene que llamar como libvorbis, si no como
+		// vorbis
+		sip4.setAudioCodec("libvorbis");
+		sip4.setAudioSampleRate("44100");
+
+		// Video
+		sip4.setDeinterlace(false);
+		sip4.setFps("25");
+		sip4.setHeight("576");
+		sip4.setWidth("720");
+		sip4.setVideoBitrate("1000000");
+		sip4.setVideoCodec("libtheora");
+		//sip4.setVideoBitrateTolerance("10");
+		
+
+		SubTask subtask4 = new SubTask();
+		subtask4.setInparameters(sip4);
+		subtask4.setId(1);
+		
+		// Let's create the common inputParams
+		TaskInputParameters cip2 = new TaskInputParameters();
+		cip2 = new TaskInputParameters();
+		cip2.setOriginalVideoPath(fileIn.getAbsolutePath());
+		
+		
+		
+		// Second Task
+		TranscodingTask tt2 = new TranscodingTask();
+		tt2.setId(1);
+		tt2.putSubTask(subtask4);
+		tt2.setCommonInputParameters(cip2);
+
+			
+		try {
+			TaskManager.getInstance().enqueueNewTask(tt);
+			TaskManager.getInstance().enqueueNewTask(tt2);
+			
+			while(TaskManager.getInstance().inQueueWaiting() 
+					|| TaskManager.getInstance().getRunningTasks() != 0) {
+				Thread.sleep(1000);
+			}
+			while(TaskManager.getInstance().outQueueWaiting())
+				System.out.println(TaskManager.getInstance()
+						.pollFinnishedTask().getStatus());
+			
+			logger.info("Finnished!");
+
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void main(String[] args) throws Exception {
+		new QueueTest().transcodeWithQueues();
+	}
+}

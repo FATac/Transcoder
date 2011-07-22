@@ -1,0 +1,58 @@
+package org.i2cat.tapies.transcoder.entities;
+
+//File name: $HeadURL$
+//Revision: $Revision$
+//Last modified: $Date$
+//Modified by: $Author$
+import java.util.Set;
+
+import org.i2cat.tapies.transcoder.transco.Transcoder;
+
+/**
+ * Interface that represents the methods that a Task have to implement. A Task
+ * will be executed by {@link Transcoder}.
+ * 
+ * @author $Author$
+ * @version $Revision$
+ * 
+ */
+public interface Task {
+	
+    public enum TaskStatus {QUEUED, IN_PROCESS, PROCESSED_OK, PROCESSED_WITH_PROBLEMS, SRC_NOT_FOUND }
+	
+	public TaskInputParameters getCommonInputParameters();
+
+	public void setCommonInputParameters(
+			TaskInputParameters commonInputParameters);
+
+	public TaskOutputResults getCommonOutputParameters();
+
+	public void setCommonOutputParameters(
+			TaskOutputResults commonOutputParameters);
+
+	public int getId();
+
+	public void setId(int id);
+
+	public int putSubTask(SubTask subtask);
+	
+	public SubTask getSubTask(int id);
+	
+	public Set<SubTask> getSubTaskList();
+
+	public TaskStatus getStatus();
+	
+	public int getStatusIntValue();
+
+	public void setStatus(TaskStatus status);
+	
+//	public List<TapiesTool> getTools();
+//
+//	public int putTool(TapiesTool tool);
+//	
+//	public void clearTools();
+//	
+//	public void cleanConfigTools();
+	
+	
+}

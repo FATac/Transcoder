@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/repos/Tapies/!svn/ver/183/Transcoder/lib
+END
+junit-4.8.2.jar
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/repos/Tapies/!svn/ver/183/Transcoder/lib/junit-4.8.2.jar
+END
+asm-3.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/repos/Tapies/!svn/ver/183/Transcoder/lib/asm-3.1.jar
+END
+jaxen-1.1.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/repos/Tapies/!svn/ver/183/Transcoder/lib/jaxen-1.1.1.jar
+END
+xuggle-xuggler.jar
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/repos/Tapies/!svn/ver/231/Transcoder/lib/xuggle-xuggler.jar
+END
+checkstyle-all-5.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/repos/Tapies/!svn/ver/183/Transcoder/lib/checkstyle-all-5.1.jar
+END
+pmd-4.2.5.jar
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/repos/Tapies/!svn/ver/183/Transcoder/lib/pmd-4.2.5.jar
+END
+commons-cli.jar
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/repos/Tapies/!svn/ver/231/Transcoder/lib/commons-cli.jar
+END
+logback-classic.jar
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/repos/Tapies/!svn/ver/231/Transcoder/lib/logback-classic.jar
+END
+slf4j-api.jar
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/repos/Tapies/!svn/ver/231/Transcoder/lib/slf4j-api.jar
+END
+logback-core.jar
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/repos/Tapies/!svn/ver/231/Transcoder/lib/logback-core.jar
+END
+org.hamcrest.core_1.1.0.v20090501071000.jar
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/repos/Tapies/!svn/ver/183/Transcoder/lib/org.hamcrest.core_1.1.0.v20090501071000.jar
+END
+findbugs-ant.jar
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/repos/Tapies/!svn/ver/183/Transcoder/lib/findbugs-ant.jar
+END
+fastmd5.jar
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/repos/Tapies/!svn/ver/183/Transcoder/lib/fastmd5.jar
+END

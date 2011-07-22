@@ -1,0 +1,233 @@
+package org.i2cat.tapies.transcoder.transco.extras.awt;
+
+//File name: $HeadURL: http://svn.i2cat.net/repos/Tapies/Transcoder/src/org/i2cat/tapies/transcoder/transco/extras/awt/DrawSubSubtitle.java $
+//Revision: $Revision: 212 $
+//Last modified: $Date: 2011-06-06 17:33:44 +0200 (Mon, 06 Jun 2011) $
+//Modified by: $Author: javier_lopez $
+import java.awt.FontMetrics;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.util.ArrayList;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@SuppressWarnings("serial")
+/**
+ * Class to parse and draw a .sub subtitle file in an AWT image. The format to parse is the following:<br>
+ * {startFrame}{endFrame}Subtitle text<br>
+ * 
+ * For instance:<br>
+ * {250}{300}Los matemáticos ganaron la guerra.
+ * 
+ *  @author $Author: javier_lopez $
+ * @version $Revision: 212 $
+ */
+public class DrawSubSubtitle extends Frame {
+
+	Logger logger = LoggerFactory.getLogger(getClass());
+	/**
+	 * The subtitle file. Note that is a {@link RandomAccessFile} where we can
+	 * go wherever we want.
+	 */
+	private RandomAccessFile raf;
+	/**
+	 * Auxiliar variable to store the actual start frame.
+	 */
+	long startframe = 0;
+	/**
+	 * Auxiliar variable to store the actual end frame.
+	 */
+	long endframe = 0;
+	/**
+	 * Auxiliar variable to store the actual subtitle.
+	 */
+	private String subtitle;
+	/**
+	 * Auxiliar variable to know if the subtitle is now parsed or not.
+	 */
+	private boolean gotcha = false;
+
+	/**
+	 * Constructor.
+	 * 
+	 * @param fileName
+	 *            Path of the sub subtitle.
+	 */
+	public DrawSubSubtitle(String fileName) {
+		try {
+			// Open the random acces file in read-only mode.
+			raf = new RandomAccessFile(fileName, "r");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Method to get the subtitle text according to a video frame number.
+	 * 
+	 * @param frame
+	 * @return
+	 * @throws IOException
+	 */
+	public synchronized String getText(long frame) throws IOException {
+		// The first time update directly and return empy string.
+		if (frame == 0) {
+			updateStartAndEndFrame();
+			return "";
+		}
+		// If frame > endframe, we've exceed the actual subtitle, then, update
+		// the start and end frame. And backtrack to get the updated subtitle.
+		if (frame > endframe) {
+			updateStartAndEndFrame();
+			return getText(frame);
+		}
+		// if frame is between startframe and endframe, then read subtitle
+		if (frame >= startframe) {
+			if (frame <= endframe) {
+				if (gotcha == false) {
+					// Not got the subtitle yet, then read
+					try {
+						/*
+						 * Read the line. The function updateStartAndEndFrame
+						 * has put the file pointer just in front of the
+						 * subtitle text. For that reason, when the readLine is
+						 * performed only returns the subtitle text and not the
+						 * start and end frame.
+						 */
+						subtitle = raf.readLine();
+
+						// | is the character for <CR><LF>
+						if (subtitle.contains("|")) {
+							subtitle = subtitle.replace("|", " ");
+						}
+						// Readed! Next time return directly.
+						gotcha = true;
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+				return subtitle;
+			}
+		}
+		return "";
+
+	}
+
+	/**
+	 * Method to update start and end frame.
+	 * 
+	 * @throws IOException
+	 */
+	private synchronized void updateStartAndEndFrame() throws IOException {
+
+		// Assume the actual subtitle is not read yet.
+		gotcha = false;
+
+		// Parse start frame.
+		// Read char by char to know where is the final }
+		long first = raf.getFilePointer();
+		char c = ' ';
+		do {
+			c = (char) raf.readByte();
+		} while (c != '}');
+		long last = raf.getFilePointer();
+		// File pointer is updated to the original position
+		raf.seek(first);
+		long len = last - first - 2;
+		// We'll read len characters.
+		ArrayList<Character> characters = new ArrayList<Character>();
+
+		// Ignore the first {
+		raf.seek(raf.getFilePointer() + 1);
+		// Read len characters and put it in bytearray.
+
+		int i = 0;
+		while (i < len) {
+			characters.add((char) raf.readByte());
+			i++;
+		}
+		i = 0;
+		String test = "";
+		for (i = 0; i < characters.size(); i++) {
+			test = test + characters.get(i).toString();
+		}
+
+		// Convert the bytearray into a string through
+		// byteArrayToString(byte[]), and then convert the result to a Long
+		startframe = Long.parseLong(test);
+
+		// Parse end frame.
+		// File pointer is at the end of start frame, then add one position.
+		raf.seek(raf.getFilePointer() + 1);
+		long end = raf.getFilePointer();
+		// The same as before, read until } and get how many chars we have to
+		// read.
+		char c2 = ' ';
+		do {
+			c2 = (char) raf.readByte();
+		} while (c2 != '}');
+		long endlast = raf.getFilePointer();
+		// File pointer is updated.
+		raf.seek(end);
+		// We'll read endlen characters.
+		long endlen = endlast - end - 2;
+		// Ignore {
+		raf.seek(raf.getFilePointer() + 1);
+		// Read and put it in bytearray
+		i = 0;
+		characters.clear();
+		while (i < endlen) {
+			characters.add((char) raf.readByte());
+			i++;
+		}
+		i = 0;
+		test = "";
+		for (i = 0; i < characters.size(); i++) {
+			test = test + characters.get(i).toString();
+		}
+		// Convert the bytearray into a string through
+		// byteArrayToString(byte[]), and then convert the result to a Long
+		endframe = Long.parseLong(test);
+		// Prepare the file pointer to read the subtitle.
+		raf.seek(raf.getFilePointer() + 1);
+
+	}
+
+	/**
+	 * Method to paint a subtitle according to the given frame number into an
+	 * AWT image passed by xuggle in a {@link Graphics} way.
+	 * 
+	 * @param g
+	 *            The graphics of the image.
+	 * @param framenumber
+	 *            The actual frame number.
+	 * @param x
+	 *            X coord.
+	 * @param y
+	 *            Y coord.
+	 */
+	public synchronized void paint(Graphics g, long framenumber, int bWidth, int bHeight) {
+		try {
+
+			String text = getText(framenumber);
+			
+			if (text.length() > 0) {
+				
+				FontMetrics fm   = g.getFontMetrics();
+				int textWidth  = (int) fm.getStringBounds(text, g).getWidth();
+	
+				// Center text horizontally and set on the 95% to the bottom
+				int x = (bWidth  - textWidth)  / 2;
+				int y = (int) (bHeight*(0.95));
+	
+				g.drawString(text, x, y);  // Draw the string.
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}

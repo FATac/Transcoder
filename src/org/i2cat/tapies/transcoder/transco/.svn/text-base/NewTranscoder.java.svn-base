@@ -1,0 +1,291 @@
+package org.i2cat.tapies.transcoder.transco;
+
+//File name: $HeadURL: http://svn.i2cat.net/repos/Tapies/Transcoder/src/org/i2cat/tapies/transcoder/transco/Transcoder.java $
+//Revision: $Revision: 183 $
+//Last modified: $Date: 2011-05-05 15:31:32 +0200 (Thu, 05 May 2011) $
+//Modified by: $Author: javier_lopez $
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.List;
+import java.util.Observable;
+import java.util.Vector;
+
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
+import org.i2cat.tapies.transcoder.configuration.GetXuggleSupportedFormats;
+import org.i2cat.tapies.transcoder.entities.SubTask;
+import org.i2cat.tapies.transcoder.entities.Task;
+import org.i2cat.tapies.transcoder.entities.SubTask.SubTaskStatus;
+import org.i2cat.tapies.transcoder.entities.Task.TaskStatus;
+import org.i2cat.tapies.transcoder.util.Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * Class to execute the transcode process.
+ * 
+ * @author $Author: javier_lopez $
+ * @version $Revision: 183 $
+ * 
+ */
+public class NewTranscoder extends Observable {
+
+	/**
+	 * A logger for this class.
+	 */
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+
+	/**
+	 * An instance of a {@link TapiesConverter} to do the transcode stuff.
+	 */
+	private NewTapiesConverter converter = null;
+
+	/**
+	 * Method to transcode a task
+	 * 
+	 * @param task
+	 *            The task to be transcoded.
+	 * @throws FileNotFoundException 
+	 */
+	public void transcode(Task task) throws FileNotFoundException {
+		
+		logger.info("Transcoding Task " + task.getId() + " started");
+		// Load the parameters of the task.
+		String original = task.getCommonInputParameters().getOriginalVideoPath();
+		if (!new File(original).exists()) {
+			FileNotFoundException e = new FileNotFoundException("File " + original + " not found");
+			// Set the TaskStatus
+			task.setStatus(TaskStatus.SRC_NOT_FOUND);
+			// Set the SubtaskStatus to all SubTasks
+			for (SubTask subtask : task.getSubTaskList()) {
+				subtask.setStatus(SubTaskStatus.PROBLEM_SRC_NOT_FOUND);
+				subtask.getOutparameters().addError(e.getLocalizedMessage());
+			}	
+			// Notify to the observer class.
+			setChanged();
+			notifyObservers(task);
+			throw e;
+		}
+			
+		task.setStatus(TaskStatus.IN_PROCESS);
+		String tmpFile = generateDeinterlacedPath(original);
+		logger.debug("File original: " + original);
+		
+
+		// Execute every subtask of the task.
+
+		for (SubTask subtask : task.getSubTaskList()) {
+
+			// Check if codec / container combination is possible
+			if (!canEncondeSubtask(subtask)) {
+				task.setStatus(TaskStatus.PROCESSED_WITH_PROBLEMS);
+				subtask.setStatus(SubTaskStatus.PROBLEM_CODEC_COMBINATION);
+				continue;
+			}
+			
+			
+			// Erase previous configurations at any tool
+			subtask.getInparameters().cleanConfigTools();
+			
+			subtask.setStatus(SubTaskStatus.LAUNCHED);
+			
+			logger.info("Subtask: " + subtask.getId());
+			converter = new NewTapiesConverter();
+			
+			String src = null;
+			String dst = subtask.getInparameters().getOutVideoPath();
+			
+			// Is deinterlacing required
+			if (subtask.getInparameters().isDeinterlace()) {
+
+				try {
+					src = createDeinterlacedFrom(subtask, original);
+				} catch (FileNotFoundException e) {
+					// Source File Not found
+					task.setStatus(TaskStatus.PROCESSED_WITH_PROBLEMS);
+					subtask.setStatus(SubTaskStatus.PROBLEM_SRC_NOT_FOUND);
+					e.printStackTrace();
+					subtask.getOutparameters().addError(e.getLocalizedMessage());
+					continue;
+				} catch (IOException e) {
+					// XUGGLE_HOME environment variable not defined on system
+					task.setStatus(TaskStatus.PROCESSED_WITH_PROBLEMS);
+					subtask.setStatus(SubTaskStatus.PROBLEM_XUGGLE_ENV);
+					e.printStackTrace();
+					subtask.getOutparameters().addError(e.getLocalizedMessage());
+					continue;
+				} catch (InterruptedException e) {
+					// Problem launching CLI to execute a deinterlance Task
+					task.setStatus(TaskStatus.PROCESSED_WITH_PROBLEMS);
+					subtask.setStatus(SubTaskStatus.PROBLEM_DEINTERLANCING);
+					e.printStackTrace();
+					subtask.getOutparameters().addError(e.getLocalizedMessage());
+					continue;
+				}
+	
+			} else {
+				src = original;
+			}
+			
+			subtask.setStatus(SubTaskStatus.SRC_DEFINED);
+			
+			// Parse the parameters to pass it to converter.
+			String[] args = Util.parseParameters(subtask.getInparameters());
+			logger.debug("src file " + src);
+			logger.debug("dst file " + dst);
+
+			String[] args1 = new String[args.length + 2];
+			for (int j = 0; j < args1.length - 2; j++) {
+				args1[j] = args[j];
+			}
+			args1[args1.length - 2] = src;
+			args1[args1.length - 1] = dst;
+			Options options = converter.defineOptions();
+			CommandLine commandLine = null;
+			try {
+				commandLine = converter.parseOptions(options, args1);
+			} catch (ParseException e) {
+				task.setStatus(TaskStatus.PROCESSED_WITH_PROBLEMS);
+				subtask.setStatus(SubTaskStatus.PROBLEM_PARSING);
+				subtask.getOutparameters().addError(e.getLocalizedMessage());
+				e.printStackTrace();
+				continue;
+			}
+			
+			subtask.setStatus(SubTaskStatus.PARSED);
+			// Set the tools.
+			//converter.clearTools();
+			converter.setTools(subtask.getInparameters().getTools());
+
+			try {
+				// Run the converter.
+				converter.run(commandLine);
+			} catch (Exception e) {
+				task.setStatus(TaskStatus.PROCESSED_WITH_PROBLEMS);
+				subtask.setStatus(SubTaskStatus.PROBLEM_CONVERTING);
+				subtask.getOutparameters().addError(e.getLocalizedMessage());
+				e.printStackTrace();
+				continue;
+			}
+			subtask.setStatus(SubTaskStatus.PROCESSED);
+		}
+		
+		// No problems while executing subtasks
+		if (task.getStatus().equals(TaskStatus.IN_PROCESS))
+			task.setStatus(TaskStatus.PROCESSED_OK);
+		
+		logger.info("Transcoding Task " + task.getId() + " finished");
+
+		// CleanUp tmp deinterlaced file
+		File tmpCheck = new File(tmpFile);
+		
+		if (tmpCheck.exists())
+			tmpCheck.delete();
+		
+		// All the subtasks are ended, then notify it to the observer class.
+		setChanged();
+		notifyObservers(task);
+		
+	}
+
+	private String generateDeinterlacedPath(String from) {
+		String ext = Util.getExtension(from);
+		return from + "-deinterlaced-" + Thread.currentThread().getId()+ "." + ext;
+	}
+	
+	private String createDeinterlacedFrom(SubTask subtask, String from) throws IOException, FileNotFoundException, InterruptedException {
+
+		String ext = Util.getExtension(from);
+		String fromDeinterlaced = generateDeinterlacedPath(from);
+		String XUGGLE_HOME = System.getenv("XUGGLE_HOME");
+
+		if (XUGGLE_HOME.isEmpty()) {
+			throw new IOException("XUGGLE_HOME is not set"); 
+		} else {
+			if (new File(fromDeinterlaced).exists()) {
+				logger.debug("No deinterlacing needed, file already exists");
+			} else {	
+				/*
+				 * To deinterlace, we have to call Xuggle's compiled FFMPEG
+				 * because this option is not yet exposed in Xuggle.
+				 * 
+				 * To make the call we call like in a shell.
+				 */
+				if(!new File(from).exists())
+					throw new FileNotFoundException("File " + from + " not found");
+				
+				ProcessBuilder proc = new ProcessBuilder();
+				
+				String ffmpeg = XUGGLE_HOME + "/bin/ffmpeg";
+				
+				List<String> command = new Vector<String>();
+
+				command.add(ffmpeg);
+				command.add("-y");
+				command.add("-i");
+				command.add(from);
+				if (ext.equals("flv")) {
+					command.add("-ar");
+					command.add("44100");
+				}
+				command.add("-deinterlace");
+				command.add(fromDeinterlaced);
+				proc.command(command);
+				proc.start().waitFor();
+				logger.debug("File deinterlaced: " + fromDeinterlaced);
+			}
+			return fromDeinterlaced;
+		}
+	}
+	
+	private boolean canEncondeSubtask(SubTask subtask) {
+		
+		// Ask Xuggle to know all possible combinations
+		
+		List<String> codecs = 
+			GetXuggleSupportedFormats.getAllSupportedCodecsInContainer(
+				subtask.getInparameters().getContainer());
+
+		if (codecs.contains(subtask.getInparameters().getVideoCodec()) &&
+				codecs.contains(subtask.getInparameters().getAudioCodec()) )  {
+			return true;
+		}
+				
+		return false;
+	}
+
+	/**
+	 * @return the logger
+	 */
+	public Logger getLogger() {
+		return logger;
+	}
+
+	/**
+	 * @param logger
+	 *            the logger to set
+	 */
+	public void setLogger(Logger logger) {
+		this.logger = logger;
+	}
+
+
+	/**
+	 * @return the converter
+	 */
+	public NewTapiesConverter getConverter() {
+		return converter;
+	}
+
+	/**
+	 * @param converter
+	 *            the converter to set
+	 */
+	public void setConverter(NewTapiesConverter converter) {
+		this.converter = converter;
+	}
+
+}

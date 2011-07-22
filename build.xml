@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	
+<project name="Transcoder" default="main" basedir=".">
+
+	<!-- Access to environment variables -->
+	<property environment="env" />
+
+	<!-- Sets variables which can later be used. -->
+	<!-- The value of a property is accessed via ${} -->
+	<property name="app.name" 	location="Transcoder" />
+	<property name="rsc.dir" 	location="rsc" />
+	<property name="src.dir" 	location="src" />
+	<property name="applet.dir"	location="applet" />
+	<property name="web.dir" 	location="web" />
+	<property name="lib.dir" 	location="lib" />
+	<property name="build.dir" 	location="build" />
+	<property name="dist.dir" 	location="dist" />
+	<property name="docs.dir" 	location="docs" />
+
+	<!--Sets variable to deploy a WAR file in Tomcat-->
+	<property name="deploy.dir" value="/home/javi/Desktop/tomcat/webapps" /> <!-- TODO: Avoid HARDCODING -->
+	<property name="file.name" 	value="Transcoder.war" />
+
+
+	<!-- Variables used for JUnit testing -->
+	<property name="test.src.dir" 		location="test" />
+	<property name="test.build.dir" 	location="test-build" />
+	<property name="test.report.dir" 	location="test-reports" />
+
+	<!-- Define the classpath which includes the junit.jar and the compiled files-->
+	<path id="class.path">
+		<fileset dir="lib">
+			<include name="**/*.jar" />
+		</fileset>
+		<pathelement location="${build.dir}" />
+		<pathelement location="${test.build.dir}" />
+	</path>
+
+	<!-- Deletes the existing build, docs and dist directory-->
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
+		<delete dir="${docs.dir}" />
+		<delete dir="${test.report.dir}" />
+		<delete dir="${test.build.dir}" />
+
+		<!--Results of the tests -->
+		<delete>
+			<fileset dir="">
+				<include name="dest*.xml" />
+			</fileset>
+		</delete>
+
+	</target>
+
+	<!-- Creates the  build, docs, dist and test-reports directory-->
+	<target name="makedir">
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${docs.dir}" />
+		<mkdir dir="${dist.dir}" />
+		<mkdir dir="${test.report.dir}" />
+		<mkdir dir="${test.build.dir}" />
+	</target>
+
+	<!-- Creates Javadoc -->
+	<target name="docs">
+		<javadoc packagenames="src" sourcepath="${src.dir}" destdir="${docs.dir}">
+			<!-- Define which files / directory should get included, we include all -->
+			<fileset dir="${src.dir}">
+				<include name="**" />
+			</fileset>
+		</javadoc>
+	</target>
+
+	<!-- Creates a war file and deploys on tomcat -->
+	
+	<target name="war-deploy" depends="compile">
+		<war destfile="${file.name}" webxml="conf/web.xml">
+			<classes dir="${build.dir}" />
+			<fileset dir="${applet.dir}" />
+			<lib dir="${lib.dir}" />
+			<fileset dir="${rsc.dir}" />
+			<fileset dir="jsp" />
+		</war>
+		<delete file="${deploy.dir}/${file.name}" />
+		<delete dir="${deploy.dir}/Transcoder" />
+		<copy file="${file.name}" todir="${deploy.dir}" />
+		<delete file="${file.name}" />
+	</target>
+
+	<!-- macro to generate a jar file, with build and hudson information -->
+
+	<macrodef name="make-jar" description="Create a jar file">
+		<attribute name="basedir" description="Root directory for the JAR" />
+		<attribute name="name" description="Name of the JAR file to create" />
+	
+		<sequential>
+			<!--
+			These property tasks will not do anything if run from within Hudson, because
+			Hudson passes these in, and Ant properties are immutable.  Effectively, this
+			sets default values for these properties.
+			-->
+			<property name="env.BUILD_NUMBER" value="Not built from Hudson" />
+			<property name="env.BUILD_TAG" value="Not built from Hudson" />
+			<property name="env.BUILD_ID" value="Not built from Hudson" />
+			<property name="env.JOB_NAME" value="Not built from Hudson" />
+			<jar basedir="@{basedir}" destfile="dist/@{name}">
+				<manifest>
+					<attribute name="Built-By" value="${user.name}" />
+					<attribute name="Hudson-Job" value="${env.JOB_NAME}" />
+					<attribute name="Build-Number" value="${env.BUILD_NUMBER}" />
+					<attribute name="Build-Date-Time" value="${env.BUILD_ID}" />
+					<attribute name="Build-Tag" value="${env.BUILD_TAG}" />
+				</manifest>
+			</jar>
+		</sequential>
+	</macrodef>
+
+	<!-- Compiles the java code -->
+	<target name="compile" depends="clean, makedir">
+		<javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="class.path" />
+		
+		<!-- We need to copy the presets to our build folder to be added -->
+		<copy todir="${build.dir}">
+			<fileset dir="${rsc.dir}/presets/" includes="*.txt"/>
+		</copy>
+		
+		<make-jar basedir="${build.dir}" name="${ant.project.name}.jar" />
+		
+	</target>
+
+	<!-- Compiles the tests code (including the usage of library for JUnit) -->
+	<target name="compile-test" depends="compile">
+		<javac srcdir="${test.src.dir}" destdir="${test.build.dir}">
+			<classpath refid="class.path" />
+		</javac>
+	</target>
+
+
+	<!-- Run the JUnit Tests -->
+	<!-- Output is XML, could also be plain-->
+	<target name="junit" depends="compile-test">
+		<junit printsummary="on" fork="true" haltonfailure="yes">
+			<classpath refid="class.path" />
+			<formatter type="xml" />
+			<batchtest todir="${test.report.dir}">
+				<fileset dir="${test.build.dir}">
+					<include name="**/AllTests.class" />
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+
+	<!-- TASK CHECKSTYLE -->
+	<taskdef resource="checkstyletask.properties" classpath="${lib.dir}/checkstyle-all-5.1.jar" />
+
+	<target name="checkstyle" description="Generates a report of code convention violations using Checkstyle.">
+
+		<checkstyle config="conf/sun_checks.xml" failureProperty="checkstyle.failure" failOnViolation="false">
+
+			<fileset dir="${src.dir}" />
+			<formatter type="xml" toFile="${test.report.dir}/checkstyle-${ant.project.name}.xml" />
+		</checkstyle>
+	</target>
+
+	<taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask" classpathref="class.path" />
+
+	<target name="pmd" description="Generates a report of code problems using PMD.">
+		<pmd rulesetfiles="rulesets/basic.xml,rulesets/design.xml,rulesets/strings.xml,rulesets/logging-java.xml,rulesets/unusedcode.xml">
+
+			<!--<formatter type="net.sourceforge.pmd.renderers.HTMLRenderer" toFile="foo.html"/>-->
+			<formatter type="xml" toFile="${test.report.dir}/pmd-${ant.project.name}.xml" />
+
+			<fileset dir="${src.dir}" includes="**/*.java" />
+			<fileset dir="${test.src.dir}" includes="**/*.java" />
+		</pmd>
+	</target>
+
+	<taskdef name="findbugs" classname="edu.umd.cs.findbugs.anttask.FindBugsTask" classpathref="class.path" />
+
+	<target name="findbugs" description="Generates a report of code bugs using FindBugs.">
+		<findbugs home="${env.FINDBUGS_HOME}" output="xml" outputFile="${test.report.dir}/findbugs-${ant.project.name}.xml">
+			<sourcePath path="${src.dir}" />
+			<class location="${dist.dir}/${ant.project.name}.jar" />
+		</findbugs>
+	</target>
+
+	<target name="reports" depends="junit, checkstyle, findbugs, pmd" />
+
+	<target name="main" depends="junit">
+		<description>Main target</description>
+	</target>
+
+
+</project>

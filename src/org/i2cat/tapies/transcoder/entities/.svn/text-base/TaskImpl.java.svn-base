@@ -1,0 +1,93 @@
+package org.i2cat.tapies.transcoder.entities;
+
+//File name: $HeadURL$
+//Revision: $Revision$
+//Last modified: $Date$
+//Modified by: $Author$
+import java.util.Set;
+
+/**
+ * A test implementation of {@link Task}
+ * 
+ * @author $Author$
+ * @version $Revision$
+ * 
+ */
+public class TaskImpl implements Task {
+
+	private int id;
+	private TaskStatus status;
+
+	public TaskImpl() {
+		id = 0;
+		status = TaskStatus.QUEUED;
+	}
+	
+	@Override
+	public TaskInputParameters getCommonInputParameters() {
+
+		return null;
+	}
+
+	@Override	
+	public void setCommonInputParameters(
+			TaskInputParameters commonInputParameters) {
+
+	}
+
+	@Override	
+	public TaskOutputResults getCommonOutputParameters() {
+
+		return null;
+	}
+
+	@Override	
+	public void setCommonOutputParameters(
+			TaskOutputResults commonOutputParameters) {
+
+	}
+
+	@Override	
+	public int getId() {
+
+		return id;
+	}
+
+	@Override	
+	public void setId(int id) {
+
+	}
+
+	@Override	
+	public TaskStatus getStatus() {
+
+		return status;
+	}
+
+	@Override
+	public int getStatusIntValue() {
+		
+		return 0;
+	}
+
+	@Override
+	public void setStatus(TaskStatus status) {
+		this.status = status;
+	}
+
+	@Override
+	public Set<SubTask> getSubTaskList() {
+		return null;
+	}
+
+	@Override
+	public SubTask getSubTask(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int putSubTask(SubTask subtask) {
+		return 0;
+	}
+}

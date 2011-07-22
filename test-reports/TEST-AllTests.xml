@@ -1,0 +1,781 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="0" hostname="javi-laptop" name="AllTests" tests="27" time="111.154" timestamp="2011-07-18T12:22:20">
+  <properties>
+    <property name="java.vendor" value="Sun Microsystems Inc." />
+    <property name="env.SESSION_MANAGER" value="local/javi-laptop:@/tmp/.ICE-unix/1554,unix/javi-laptop:/tmp/.ICE-unix/1554" />
+    <property name="env.GIT_AUTHOR_NAME" value="Javier Lopez" />
+    <property name="env.LESSOPEN" value="| /usr/bin/lesspipe %s" />
+    <property name="lib.dir" value="/home/javi/workspace/Transcoder/lib" />
+    <property name="sun.java.launcher" value="SUN_STANDARD" />
+    <property name="eclipse.pdebuild.templates" value="/home/javi/eclipse/plugins/org.eclipse.pde.build_3.5.2.R35x_20100114/templates//" />
+    <property name="sun.management.compiler" value="HotSpot Tiered Compilers" />
+    <property name="ant.file.Transcoder" value="/home/javi/workspace/Transcoder/build.xml" />
+    <property name="docs.dir" value="/home/javi/workspace/Transcoder/docs" />
+    <property name="os.name" value="Linux" />
+    <property name="sun.boot.class.path" value="/usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/resources.jar:/usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/rt.jar:/usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/jsse.jar:/usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/jce.jar:/usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/charsets.jar:/usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/modules/jdk.boot.jar:/usr/lib/jvm/java-6-sun-1.6.0.24/jre/classes" />
+    <property name="env.PWD" value="/home/javi" />
+    <property name="env.XDG_SESSION_COOKIE" value="f4877074ab60599900a42fcb4c15ff97-1310977376.580015-1482683034" />
+    <property name="sun.desktop" value="gnome" />
+    <property name="env.LANG" value="en_US.utf8" />
+    <property name="java.vm.specification.vendor" value="Sun Microsystems Inc." />
+    <property name="ant.home" value="/home/javi/eclipse/plugins/org.apache.ant_1.7.1.v20090120-1145" />
+    <property name="java.runtime.version" value="1.6.0_24-b07" />
+    <property name="test.build.dir" value="/home/javi/workspace/Transcoder/test-build" />
+    <property name="env.DEFAULTS_PATH" value="/usr/share/gconf/gnome.default.path" />
+    <property name="applet.dir" value="/home/javi/workspace/Transcoder/applet" />
+    <property name="env.DISPLAY" value=":0.0" />
+    <property name="user.name" value="javi" />
+    <property name="env._" value="eclipse/eclipse" />
+    <property name="env.USER" value="javi" />
+    <property name="env.SHELL" value="/bin/bash" />
+    <property name="env.MOZILLA_FIVE_HOME" value="/usr/lib/xulrunner-addons" />
+    <property name="env.DESKTOP_SESSION" value="gnome" />
+    <property name="deploy.dir" value="/home/javi/Desktop/tomcat/webapps" />
+    <property name="env.XDG_DATA_DIRS" value="/usr/share/gnome:/usr/local/share/:/usr/share/" />
+    <property name="env.NLSPATH" value="/usr/dt/lib/nls/msg/%L/%N.cat" />
+    <property name="build.dir" value="/home/javi/workspace/Transcoder/build" />
+    <property name="file.name" value="Transcoder.war" />
+    <property name="env.PATH" value="/usr/local/boost_1_43_0:/usr/local/xuggler/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/javi/Desktop/play-1.2.2" />
+    <property name="user.language" value="en" />
+    <property name="test.report.dir" value="/home/javi/workspace/Transcoder/test-reports" />
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386" />
+    <property name="ant.project.name" value="Transcoder" />
+    <property name="java.version" value="1.6.0_24" />
+    <property name="user.timezone" value="" />
+    <property name="env.DBUS_SESSION_BUS_ADDRESS" value="unix:abstract=/tmp/dbus-RpzZMM2AzL,guid=139f888b8ad2ecff12ebd9974e23ed60" />
+    <property name="sun.arch.data.model" value="32" />
+    <property name="env.SSH_AGENT_PID" value="1588" />
+    <property name="test.src.dir" value="/home/javi/workspace/Transcoder/test" />
+    <property name="java.endorsed.dirs" value="/usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/endorsed" />
+    <property name="sun.cpu.isalist" value="" />
+    <property name="sun.jnu.encoding" value="UTF-8" />
+    <property name="file.encoding.pkg" value="sun.io" />
+    <property name="env.SHLVL" value="1" />
+    <property name="file.separator" value="/" />
+    <property name="java.specification.name" value="Java Platform API Specification" />
+    <property name="env.GNOME_DESKTOP_SESSION_ID" value="this-is-deprecated" />
+    <property name="java.class.version" value="50.0" />
+    <property name="env.GDMSESSION" value="gnome" />
+    <property name="env.GDM_KEYBOARD_LAYOUT" value="es" />
+    <property name="rsc.dir" value="/home/javi/workspace/Transcoder/rsc" />
+    <property name="user.country" value="US" />
+    <property name="env.GNOME_KEYRING_PID" value="1536" />
+    <property name="env.BUILD_NUMBER" value="Not built from Hudson" />
+    <property name="java.home" value="/usr/lib/jvm/java-6-sun-1.6.0.24/jre" />
+    <property name="dist.dir" value="/home/javi/workspace/Transcoder/dist" />
+    <property name="env.GIT_AUTHOR_EMAIL" value="jlopex@gmail.com" />
+    <property name="java.vm.info" value="mixed mode" />
+    <property name="env.LOGNAME" value="javi" />
+    <property name="ant.file" value="/home/javi/workspace/Transcoder/build.xml" />
+    <property name="os.version" value="2.6.32-32-generic-pae" />
+    <property name="path.separator" value=":" />
+    <property name="env.GIT_COMMITTER_NAME" value="Javier Lopez" />
+    <property name="java.vm.version" value="19.1-b02" />
+    <property name="web.dir" value="/home/javi/workspace/Transcoder/web" />
+    <property name="ant.library.dir" value="/home/javi/eclipse/plugins/org.apache.ant_1.7.1.v20090120-1145/lib" />
+    <property name="env.JOB_NAME" value="Not built from Hudson" />
+    <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
+    <property name="env.TERM" value="xterm" />
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+    <property name="eclipse.pdebuild.scripts" value="/home/javi/eclipse/plugins/org.eclipse.pde.build_3.5.2.R35x_20100114/scripts//" />
+    <property name="env.BUILD_TAG" value="Not built from Hudson" />
+    <property name="env.GDM_LANG" value="en_US.utf8" />
+    <property name="user.home" value="/home/javi" />
+    <property name="env.OLDPWD" value="/home/javi/workspace" />
+    <property name="java.specification.vendor" value="Sun Microsystems Inc." />
+    <property name="env.WINDOWID" value="73400323" />
+    <property name="java.library.path" value="/usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/server:/usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386:/usr/lib/jvm/java-6-sun-1.6.0.24/jre/../lib/i386:/usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/client:/usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386:/usr/local/xuggler/lib:/usr/lib/xulrunner-addons:/usr/lib/xulrunner-addons:/usr/java/packages/lib/i386:/lib:/usr/lib" />
+    <property name="java.vendor.url" value="http://java.sun.com/" />
+    <property name="java.vm.vendor" value="Sun Microsystems Inc." />
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+    <property name="ant.version" value="Apache Ant version 1.7.1 compiled on June 27 2008" />
+    <property name="env.GIT_COMMITTER_EMAIL" value="jlopex@gmail.com" />
+    <property name="java.class.path" value="/home/javi/workspace/Transcoder/lib/asm-3.1.jar:/home/javi/workspace/Transcoder/lib/checkstyle-all-5.1.jar:/home/javi/workspace/Transcoder/lib/commons-cli.jar:/home/javi/workspace/Transcoder/lib/fastmd5.jar:/home/javi/workspace/Transcoder/lib/findbugs-ant.jar:/home/javi/workspace/Transcoder/lib/jaxen-1.1.1.jar:/home/javi/workspace/Transcoder/lib/junit-4.8.2.jar:/home/javi/workspace/Transcoder/lib/logback-classic.jar:/home/javi/workspace/Transcoder/lib/logback-core.jar:/home/javi/workspace/Transcoder/lib/org.hamcrest.core_1.1.0.v20090501071000.jar:/home/javi/workspace/Transcoder/lib/pmd-4.2.5.jar:/home/javi/workspace/Transcoder/lib/slf4j-api.jar:/home/javi/workspace/Transcoder/lib/xuggle-xuggler.jar:/home/javi/workspace/Transcoder/build:/home/javi/workspace/Transcoder/test-build:/home/javi/eclipse/plugins/org.apache.ant_1.7.1.v20090120-1145/lib/ant-launcher.jar:/home/javi/eclipse/plugins/org.apache.ant_1.7.1.v20090120-1145/lib/ant.jar:/home/javi/eclipse/plugins/org.apache.ant_1.7.1.v20090120-1145/lib/ant-junit.jar" />
+    <property name="env.ANT_OPTS" value="-Xmx356m" />
+    <property name="env.XFILESEARCHPATH" value="/usr/dt/app-defaults/%L/Dt" />
+    <property name="app.name" value="/home/javi/workspace/Transcoder/Transcoder" />
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+    <property name="java.vm.specification.version" value="1.0" />
+    <property name="sun.cpu.endian" value="little" />
+    <property name="sun.os.patch.level" value="unknown" />
+    <property name="env.HOME" value="/home/javi" />
+    <property name="env.ANT_HOME" value="/home/javi/eclipse/plugins/org.apache.ant_1.7.1.v20090120-1145" />
+    <property name="env.LS_COLORS" value="rs=0:di=01;34:ln=01;36:hl=44;37:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:" />
+    <property name="env.LD_LIBRARY_PATH" value="/usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/server:/usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386:/usr/lib/jvm/java-6-sun-1.6.0.24/jre/../lib/i386:/usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386/client:/usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/i386:/usr/local/xuggler/lib:/usr/lib/xulrunner-addons:/usr/lib/xulrunner-addons" />
+    <property name="java.io.tmpdir" value="/tmp" />
+    <property name="eclipse.pdebuild.home" value="/home/javi/eclipse/plugins/org.eclipse.pde.build_3.5.2.R35x_20100114/.//" />
+    <property name="java.vendor.url.bug" value="http://java.sun.com/cgi-bin/bugreport.cgi" />
+    <property name="env.SSH_AUTH_SOCK" value="/tmp/keyring-MiY0EK/ssh" />
+    <property name="env.FINDBUGS_HOME" value="/home/javi/Desktop/old/findbugs-1.3.9" />
+    <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment" />
+    <property name="os.arch" value="i386" />
+    <property name="java.ext.dirs" value="/usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/ext:/usr/java/packages/lib/ext" />
+    <property name="user.dir" value="/home/javi/workspace/Transcoder" />
+    <property name="env.BUILD_ID" value="Not built from Hudson" />
+    <property name="env.XAUTHORITY" value="/var/run/gdm/auth-for-javi-wg59XB/database" />
+    <property name="env.MANDATORY_PATH" value="/usr/share/gconf/gnome.mandatory.path" />
+    <property name="env.SPEECHD_PORT" value="7560" />
+    <property name="env.GTK_MODULES" value="canberra-gtk-module" />
+    <property name="line.separator" value="
+" />
+    <property name="java.vm.name" value="Java HotSpot(TM) Server VM" />
+    <property name="env.COLORTERM" value="gnome-terminal" />
+    <property name="basedir" value="/home/javi/workspace/Transcoder" />
+    <property name="env.XUGGLE_HOME" value="/usr/local/xuggler" />
+    <property name="ant.java.version" value="1.6" />
+    <property name="env.ORBIT_SOCKETDIR" value="/tmp/orbit-javi" />
+    <property name="ant.core.lib" value="/home/javi/eclipse/plugins/org.apache.ant_1.7.1.v20090120-1145/lib/ant.jar" />
+    <property name="env.USERNAME" value="javi" />
+    <property name="file.encoding" value="UTF-8" />
+    <property name="java.specification.version" value="1.6" />
+    <property name="env.GNOME_KEYRING_CONTROL" value="/tmp/keyring-MiY0EK" />
+    <property name="src.dir" value="/home/javi/workspace/Transcoder/src" />
+    <property name="env.XDG_CONFIG_DIRS" value="/etc/xdg/xdg-gnome:/etc/xdg" />
+    <property name="env.LESSCLOSE" value="/usr/bin/lesspipe %s %s" />
+  </properties>
+  <testcase classname="org.i2cat.tapies.transcoder.analysis.GetContainerInfoTest" name="getContainerInfo" time="0.365" />
+  <testcase classname="org.i2cat.tapies.transcoder.analysis.SystemStatisticsTest" name="testGetCpuTimes" time="0.0070" />
+  <testcase classname="org.i2cat.tapies.transcoder.analysis.SystemStatisticsTest" name="testGetCpuTimesRunning" time="0.103" />
+  <testcase classname="org.i2cat.tapies.transcoder.analysis.SystemStatisticsTest" name="testGetLoadAverage" time="0.0010" />
+  <testcase classname="org.i2cat.tapies.transcoder.analysis.SystemStatisticsTest" name="testGetLoadAverageRunning" time="10.051" />
+  <testcase classname="org.i2cat.tapies.transcoder.configuration.GetXuggleSupportTest" name="getSupportedFormats" time="0.018" />
+  <testcase classname="org.i2cat.tapies.transcoder.configuration.GetXuggleSupportTest" name="getSupportedVideoFormats" time="0.0080" />
+  <testcase classname="org.i2cat.tapies.transcoder.configuration.GetXuggleSupportTest" name="getSupportedAudioFormats" time="0.0050" />
+  <testcase classname="org.i2cat.tapies.transcoder.configuration.GetXuggleSupportTest" name="getVideoCodecs" time="0.0080" />
+  <testcase classname="org.i2cat.tapies.transcoder.configuration.GetXuggleSupportTest" name="getVideoCodecsInContainer" time="0.0010" />
+  <testcase classname="org.i2cat.tapies.transcoder.configuration.GetXuggleSupportTest" name="getAudioCodecs" time="0.0090" />
+  <testcase classname="org.i2cat.tapies.transcoder.configuration.GetXuggleSupportTest" name="getAudioCodecsInContainer" time="0.0" />
+  <testcase classname="org.i2cat.tapies.transcoder.configuration.GetXuggleSupportTest" name="getAudioCodecsInContainer2" time="0.0" />
+  <testcase classname="org.i2cat.tapies.transcoder.configuration.GetXuggleSupportTest" name="getAllCodecs" time="0.01" />
+  <testcase classname="org.i2cat.tapies.transcoder.configuration.GetXuggleSupportTest" name="getSubtitleCodecs" time="0.0070" />
+  <testcase classname="org.i2cat.tapies.transcoder.input.VideoGetterTest" name="getVideosFromURL" time="5.632" />
+  <testcase classname="org.i2cat.tapies.transcoder.input.VideoGetterTest" name="checkDownloadedVideos" time="0.03" />
+  <testcase classname="org.i2cat.tapies.transcoder.input.VideoGetterTest" name="executeTaskFromDownloadedVideo" time="5.018" />
+  <testcase classname="org.i2cat.tapies.transcoder.transco.QueueTest" name="transcodeWithQueues" time="22.149" />
+  <testcase classname="org.i2cat.tapies.transcoder.transco.TranscoTest" name="testTranscodeWebM" time="19.343" />
+  <testcase classname="org.i2cat.tapies.transcoder.transco.TranscoTest" name="testTranscode" time="6.318" />
+  <testcase classname="org.i2cat.tapies.transcoder.transco.TranscoTest" name="testTranscodeResizing" time="4.976" />
+  <testcase classname="org.i2cat.tapies.transcoder.transco.TranscoTest" name="testTranscodeSubtitleTool" time="7.996" />
+  <testcase classname="org.i2cat.tapies.transcoder.transco.TranscoTest" name="testTranscodeResizingSubtitleTool" time="5.403" />
+  <testcase classname="org.i2cat.tapies.transcoder.transco.TranscoTest" name="testTranscodingImageTool" time="7.96" />
+  <testcase classname="org.i2cat.tapies.transcoder.transco.TranscoTest" name="testTranscodingResizingImageTool" time="5.494" />
+  <testcase classname="org.i2cat.tapies.transcoder.transco.TransLoadTest" name="transcodeLoadCheck" time="10.004" />
+  <system-out><![CDATA[14:22:20.917 [main] DEBUG o.i.t.t.analysis.GetContainerInfo - File test.dv has 2 streams
+14:22:20.921 [main] DEBUG o.i.t.t.analysis.GetContainerInfo - Duration(ms)10000
+14:22:20.921 [main] DEBUG o.i.t.t.analysis.GetContainerInfo - Start time(ms)0
+14:22:20.921 [main] DEBUG o.i.t.t.analysis.GetContainerInfo - file size (bytes)36000000
+14:22:20.921 [main] DEBUG o.i.t.t.analysis.GetContainerInfo - bit rate:28800000
+14:22:20.926 [main] DEBUG o.i.t.t.analysis.GetContainerInfo - stream 0
+14:22:20.927 [main] DEBUG o.i.t.t.analysis.GetContainerInfo - type: CODEC_TYPE_VIDEO
+14:22:20.943 [main] DEBUG o.i.t.t.analysis.GetContainerInfo - codec:CODEC_ID_DVVIDEO
+14:22:20.943 [main] DEBUG o.i.t.t.analysis.GetContainerInfo - Duration(ms)0
+14:22:20.943 [main] DEBUG o.i.t.t.analysis.GetContainerInfo - Start time(ms)0
+14:22:20.943 [main] DEBUG o.i.t.t.analysis.GetContainerInfo - language: null
+14:22:20.944 [main] DEBUG o.i.t.t.analysis.GetContainerInfo - timebase: 1/25
+14:22:20.945 [main] DEBUG o.i.t.t.analysis.GetContainerInfo - coder tb: 1/25
+14:22:20.945 [main] DEBUG o.i.t.t.analysis.GetContainerInfo - width:720
+14:22:20.945 [main] DEBUG o.i.t.t.analysis.GetContainerInfo - height:576
+14:22:20.949 [main] DEBUG o.i.t.t.analysis.GetContainerInfo - format:  YUV420P
+14:22:20.949 [main] DEBUG o.i.t.t.analysis.GetContainerInfo - frame-rate: 25.0
+14:22:20.957 [main] DEBUG o.i.t.t.analysis.GetContainerInfo - stream 1
+14:22:20.957 [main] DEBUG o.i.t.t.analysis.GetContainerInfo - type: CODEC_TYPE_AUDIO
+14:22:20.957 [main] DEBUG o.i.t.t.analysis.GetContainerInfo - codec:CODEC_ID_PCM_S16LE
+14:22:20.957 [main] DEBUG o.i.t.t.analysis.GetContainerInfo - Duration(ms)300
+14:22:20.958 [main] DEBUG o.i.t.t.analysis.GetContainerInfo - Start time(ms)0
+14:22:20.958 [main] DEBUG o.i.t.t.analysis.GetContainerInfo - language: null
+14:22:20.958 [main] DEBUG o.i.t.t.analysis.GetContainerInfo - timebase: 1/30000
+14:22:20.958 [main] DEBUG o.i.t.t.analysis.GetContainerInfo - coder tb: 1/30000
+14:22:20.958 [main] DEBUG o.i.t.t.analysis.GetContainerInfo - sample rate:48000
+14:22:20.958 [main] DEBUG o.i.t.t.analysis.GetContainerInfo - channels:2
+14:22:20.959 [main] DEBUG o.i.t.t.analysis.GetContainerInfo - format: FMT_S16
+14:22:20.977 [main] INFO  o.i.t.t.a.SystemStatisticsTest - CPU time 480000000
+14:22:20.978 [main] INFO  o.i.t.t.a.SystemStatisticsTest - User time 390000000
+14:22:20.978 [main] INFO  o.i.t.t.a.SystemStatisticsTest - System time 90000000
+14:22:21.084 [main] INFO  o.i.t.t.a.SystemStatisticsTest - CPU time consumed 580000000
+14:22:21.085 [main] INFO  o.i.t.t.a.SystemStatisticsTest - User time consumed 490000000
+14:22:21.085 [main] INFO  o.i.t.t.a.SystemStatisticsTest - System time consumed 90000000
+14:22:21.086 [main] INFO  o.i.t.t.a.SystemStatisticsTest - loadAverage: 1.99
+14:22:31.138 [main] INFO  o.i.t.t.a.SystemStatisticsTest - Delta loadAverage: 0.07999999999999985
+14:22:31.142 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - getSupportedFormats()
+14:22:31.155 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - 3g2
+14:22:31.155 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - 3gp
+14:22:31.155 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - RoQ
+14:22:31.155 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - a64
+14:22:31.155 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - ac3
+14:22:31.155 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - adts
+14:22:31.156 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - aiff
+14:22:31.156 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - alaw
+14:22:31.156 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - alsa
+14:22:31.156 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - amr
+14:22:31.156 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - asf
+14:22:31.156 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - asf_stream
+14:22:31.156 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - au
+14:22:31.156 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - avi
+14:22:31.156 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - avm2
+14:22:31.156 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - caf
+14:22:31.156 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - cavsvideo
+14:22:31.156 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - crc
+14:22:31.156 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - daud
+14:22:31.156 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - dirac
+14:22:31.156 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - dnxhd
+14:22:31.156 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - dts
+14:22:31.156 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - dv
+14:22:31.156 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - dvd
+14:22:31.156 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - eac3
+14:22:31.156 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - f32be
+14:22:31.156 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - f32le
+14:22:31.156 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - f64be
+14:22:31.156 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - f64le
+14:22:31.156 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - ffm
+14:22:31.156 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - filmstrip
+14:22:31.156 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - flac
+14:22:31.156 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - flv
+14:22:31.157 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - framecrc
+14:22:31.157 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - framemd5
+14:22:31.157 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - g722
+14:22:31.157 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - gif
+14:22:31.157 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - gxf
+14:22:31.157 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - h261
+14:22:31.157 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - h263
+14:22:31.157 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - h264
+14:22:31.157 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - image2
+14:22:31.157 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - image2pipe
+14:22:31.157 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - ipod
+14:22:31.157 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - ivf
+14:22:31.157 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - m4v
+14:22:31.157 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - matroska
+14:22:31.157 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - md5
+14:22:31.157 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mjpeg
+14:22:31.157 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mlp
+14:22:31.157 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mmf
+14:22:31.157 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mov
+14:22:31.157 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mp2
+14:22:31.157 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mp3
+14:22:31.157 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mp4
+14:22:31.157 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mpeg
+14:22:31.157 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mpeg1video
+14:22:31.157 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mpeg2video
+14:22:31.157 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mpegts
+14:22:31.157 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mpjpeg
+14:22:31.158 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mulaw
+14:22:31.158 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mxf
+14:22:31.158 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mxf_d10
+14:22:31.158 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - null
+14:22:31.158 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - nut
+14:22:31.158 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - ogg
+14:22:31.158 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - oss
+14:22:31.158 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - psp
+14:22:31.158 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - rawvideo
+14:22:31.158 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - rcv
+14:22:31.158 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - rm
+14:22:31.158 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - rso
+14:22:31.158 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - rtp
+14:22:31.158 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - rtsp
+14:22:31.158 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - s16be
+14:22:31.158 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - s16le
+14:22:31.158 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - s24be
+14:22:31.158 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - s24le
+14:22:31.158 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - s32be
+14:22:31.158 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - s32le
+14:22:31.158 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - s8
+14:22:31.158 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - sap
+14:22:31.158 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - sdl
+14:22:31.158 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - sox
+14:22:31.158 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - spdif
+14:22:31.158 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - svcd
+14:22:31.158 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - swf
+14:22:31.159 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - truehd
+14:22:31.159 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - u16be
+14:22:31.159 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - u16le
+14:22:31.159 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - u24be
+14:22:31.159 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - u24le
+14:22:31.159 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - u32be
+14:22:31.159 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - u32le
+14:22:31.159 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - u8
+14:22:31.159 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - vcd
+14:22:31.159 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - vob
+14:22:31.159 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - voc
+14:22:31.159 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - wav
+14:22:31.159 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - webm
+14:22:31.159 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - yuv4mpegpipe
+14:22:31.159 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - getSupportedFormats() finished
+14:22:31.160 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - getSupportedVideoFormats()
+14:22:31.166 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - 3g2
+14:22:31.166 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - 3gp
+14:22:31.166 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - RoQ
+14:22:31.166 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - a64
+14:22:31.166 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - asf
+14:22:31.166 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - asf_stream
+14:22:31.166 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - avi
+14:22:31.166 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - avm2
+14:22:31.166 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - cavsvideo
+14:22:31.166 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - crc
+14:22:31.166 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - dirac
+14:22:31.166 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - dnxhd
+14:22:31.166 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - dv
+14:22:31.166 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - dvd
+14:22:31.166 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - ffm
+14:22:31.166 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - filmstrip
+14:22:31.166 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - flv
+14:22:31.166 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - framecrc
+14:22:31.166 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - framemd5
+14:22:31.166 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - gif
+14:22:31.166 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - gxf
+14:22:31.166 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - h261
+14:22:31.166 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - h263
+14:22:31.166 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - h264
+14:22:31.166 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - image2
+14:22:31.167 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - image2pipe
+14:22:31.167 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - ipod
+14:22:31.167 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - ivf
+14:22:31.167 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - m4v
+14:22:31.167 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - matroska
+14:22:31.167 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - md5
+14:22:31.167 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mjpeg
+14:22:31.167 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mov
+14:22:31.167 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mp4
+14:22:31.167 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mpeg
+14:22:31.167 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mpeg1video
+14:22:31.167 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mpeg2video
+14:22:31.167 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mpegts
+14:22:31.167 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mpjpeg
+14:22:31.167 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mxf
+14:22:31.167 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mxf_d10
+14:22:31.167 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - null
+14:22:31.167 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - nut
+14:22:31.167 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - ogg
+14:22:31.167 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - psp
+14:22:31.167 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - rawvideo
+14:22:31.167 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - rcv
+14:22:31.167 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - rm
+14:22:31.167 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - rtsp
+14:22:31.167 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - sap
+14:22:31.167 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - sdl
+14:22:31.167 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - svcd
+14:22:31.167 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - swf
+14:22:31.168 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - vcd
+14:22:31.168 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - vob
+14:22:31.168 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - webm
+14:22:31.168 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - yuv4mpegpipe
+14:22:31.168 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - getSupportedVideoFormats() finished
+14:22:31.168 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - getSupportedAudioFormats()
+14:22:31.170 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - 3g2
+14:22:31.171 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - 3gp
+14:22:31.171 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - RoQ
+14:22:31.171 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - ac3
+14:22:31.171 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - adts
+14:22:31.171 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - aiff
+14:22:31.171 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - alaw
+14:22:31.171 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - alsa
+14:22:31.171 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - amr
+14:22:31.171 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - asf
+14:22:31.171 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - asf_stream
+14:22:31.171 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - au
+14:22:31.171 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - avi
+14:22:31.171 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - avm2
+14:22:31.171 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - caf
+14:22:31.171 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - crc
+14:22:31.171 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - daud
+14:22:31.171 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - dts
+14:22:31.171 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - dv
+14:22:31.171 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - dvd
+14:22:31.171 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - eac3
+14:22:31.171 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - f32be
+14:22:31.171 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - f32le
+14:22:31.171 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - f64be
+14:22:31.171 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - f64le
+14:22:31.171 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - ffm
+14:22:31.171 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - flac
+14:22:31.171 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - flv
+14:22:31.171 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - framecrc
+14:22:31.171 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - framemd5
+14:22:31.172 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - g722
+14:22:31.172 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - gxf
+14:22:31.172 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - ipod
+14:22:31.172 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - matroska
+14:22:31.172 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - md5
+14:22:31.172 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mlp
+14:22:31.172 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mmf
+14:22:31.172 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mov
+14:22:31.172 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mp2
+14:22:31.172 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mp3
+14:22:31.172 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mp4
+14:22:31.172 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mpeg
+14:22:31.172 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mpegts
+14:22:31.172 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mulaw
+14:22:31.172 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mxf
+14:22:31.172 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mxf_d10
+14:22:31.172 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - null
+14:22:31.172 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - nut
+14:22:31.172 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - ogg
+14:22:31.172 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - oss
+14:22:31.172 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - psp
+14:22:31.172 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - rm
+14:22:31.172 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - rso
+14:22:31.172 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - rtp
+14:22:31.172 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - rtsp
+14:22:31.172 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - s16be
+14:22:31.172 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - s16le
+14:22:31.172 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - s24be
+14:22:31.173 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - s24le
+14:22:31.173 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - s32be
+14:22:31.173 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - s32le
+14:22:31.173 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - s8
+14:22:31.173 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - sap
+14:22:31.173 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - sox
+14:22:31.173 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - spdif
+14:22:31.173 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - svcd
+14:22:31.173 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - swf
+14:22:31.173 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - truehd
+14:22:31.173 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - u16be
+14:22:31.173 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - u16le
+14:22:31.173 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - u24be
+14:22:31.173 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - u24le
+14:22:31.173 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - u32be
+14:22:31.173 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - u32le
+14:22:31.173 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - u8
+14:22:31.173 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - vcd
+14:22:31.173 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - vob
+14:22:31.173 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - voc
+14:22:31.173 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - wav
+14:22:31.173 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - webm
+14:22:31.173 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - getSupportedAudioFormats() finished
+14:22:31.174 [main] INFO  o.i.t.t.c.GetXuggleSupportTest - Get video codecs
+14:22:31.180 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - rv10
+14:22:31.180 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - flv
+14:22:31.180 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcx
+14:22:31.180 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pgm
+14:22:31.180 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - flashsv2
+14:22:31.180 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mpeg4
+14:22:31.180 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - libx264
+14:22:31.180 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - asv2
+14:22:31.180 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - dvvideo
+14:22:31.180 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - jpegls
+14:22:31.180 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pgmyuv
+14:22:31.180 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - dnxhd
+14:22:31.180 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - asv1
+14:22:31.180 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - rv20
+14:22:31.180 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - dpx
+14:22:31.180 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mpeg2video
+14:22:31.180 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - libvpx
+14:22:31.180 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - a64multi5
+14:22:31.181 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - targa
+14:22:31.181 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - gif
+14:22:31.181 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - h263
+14:22:31.181 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - roqvideo
+14:22:31.181 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - a64multi
+14:22:31.181 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - libtheora
+14:22:31.181 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - h261
+14:22:31.181 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - svq1
+14:22:31.181 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - rawvideo
+14:22:31.181 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pbm
+14:22:31.181 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - v210
+14:22:31.181 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - h263p
+14:22:31.181 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - bmp
+14:22:31.181 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - ljpeg
+14:22:31.181 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - msmpeg4
+14:22:31.181 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - sgi
+14:22:31.181 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - zmbv
+14:22:31.181 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - snow
+14:22:31.181 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - ffv1
+14:22:31.181 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - msmpeg4v2
+14:22:31.181 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - zlib
+14:22:31.181 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - ffvhuff
+14:22:31.181 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - qtrle
+14:22:31.181 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - flashsv
+14:22:31.181 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - huffyuv
+14:22:31.181 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - png
+14:22:31.181 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - wmv2
+14:22:31.181 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pam
+14:22:31.181 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mpeg1video
+14:22:31.182 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - wmv1
+14:22:31.182 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - ppm
+14:22:31.182 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mjpeg
+14:22:31.182 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - tiff
+14:22:31.182 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - msvideo1
+14:22:31.182 [main] INFO  o.i.t.t.c.GetXuggleSupportTest - End video codecs
+
+14:22:31.182 [main] INFO  o.i.t.t.c.GetXuggleSupportTest - Get video codecs in container
+14:22:31.182 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - libvpx
+14:22:31.182 [main] INFO  o.i.t.t.c.GetXuggleSupportTest - End video codecs
+
+14:22:31.183 [main] INFO  o.i.t.t.c.GetXuggleSupportTest - Get audio codecs
+14:22:31.190 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - wmav2
+14:22:31.190 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_s32be
+14:22:31.190 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_s16be
+14:22:31.190 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_s32le
+14:22:31.190 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - real_144
+14:22:31.190 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_s16le
+14:22:31.190 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_mulaw
+14:22:31.190 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_u8
+14:22:31.190 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - adpcm_ima_qt
+14:22:31.190 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_s8
+14:22:31.190 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_u16be
+14:22:31.190 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - libvorbis
+14:22:31.191 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - adpcm_adx
+14:22:31.191 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - alac
+14:22:31.191 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_s24le
+14:22:31.191 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - ac3_fixed
+14:22:31.191 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_zork
+14:22:31.191 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mp2
+14:22:31.191 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_s24daud
+14:22:31.191 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_u32le
+14:22:31.191 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - adpcm_yamaha
+14:22:31.191 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - g726
+14:22:31.191 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - roq_dpcm
+14:22:31.191 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_alaw
+14:22:31.191 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - sonic
+14:22:31.191 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - ac3
+14:22:31.191 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_s24be
+14:22:31.191 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - adpcm_swf
+14:22:31.191 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_u32be
+14:22:31.191 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - dca
+14:22:31.191 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_f64be
+14:22:31.191 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_f64le
+14:22:31.192 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - libspeex
+14:22:31.192 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - aac
+14:22:31.192 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_f32be
+14:22:31.192 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - sonicls
+14:22:31.192 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - g722
+14:22:31.192 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - libopencore_amrnb
+14:22:31.192 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_f32le
+14:22:31.192 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - libmp3lame
+14:22:31.192 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - libfaac
+14:22:31.192 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - wmav1
+14:22:31.192 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_u16le
+14:22:31.192 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - adpcm_ms
+14:22:31.192 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - flac
+14:22:31.192 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_u24be
+14:22:31.192 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_u24le
+14:22:31.192 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - vorbis
+14:22:31.192 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - adpcm_ima_wav
+14:22:31.192 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - nellymoser
+14:22:31.192 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - eac3
+14:22:31.192 [main] INFO  o.i.t.t.c.GetXuggleSupportTest - End audio codecs
+
+14:22:31.193 [main] INFO  o.i.t.t.c.GetXuggleSupportTest - Get audio codecs in container 
+14:22:31.193 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - libvorbis
+14:22:31.193 [main] INFO  o.i.t.t.c.GetXuggleSupportTest - End audio codecs
+
+14:22:31.194 [main] INFO  o.i.t.t.c.GetXuggleSupportTest - Get audio codecs in container 
+14:22:31.194 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - libmp3lame
+14:22:31.194 [main] INFO  o.i.t.t.c.GetXuggleSupportTest - End audio codecs
+
+14:22:31.194 [main] INFO  o.i.t.t.c.GetXuggleSupportTest - Get all codecs
+14:22:31.200 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - tiff
+14:22:31.200 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_mulaw
+14:22:31.200 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - dca
+14:22:31.200 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pbm
+14:22:31.200 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - wmav2
+14:22:31.200 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - zlib
+14:22:31.200 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pam
+14:22:31.200 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_s8
+14:22:31.200 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - g722
+14:22:31.201 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mpeg4
+14:22:31.201 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_u16be
+14:22:31.201 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - wmav1
+14:22:31.201 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - eac3
+14:22:31.201 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_u16le
+14:22:31.201 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - dvvideo
+14:22:31.201 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - aac
+14:22:31.201 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mpeg1video
+14:22:31.201 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - libfaac
+14:22:31.201 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - targa
+14:22:31.201 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - rawvideo
+14:22:31.201 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - flac
+14:22:31.201 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - nellymoser
+14:22:31.201 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - libmp3lame
+14:22:31.201 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mpeg2video
+14:22:31.201 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - zmbv
+14:22:31.201 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_s16be
+14:22:31.201 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - libopencore_amrnb
+14:22:31.201 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - flv
+14:22:31.201 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcx
+14:22:31.201 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - roqvideo
+14:22:31.201 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - adpcm_ms
+14:22:31.201 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - h261
+14:22:31.201 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_u24be
+14:22:31.201 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - svq1
+14:22:31.201 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - bmp
+14:22:31.201 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - srt
+14:22:31.201 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_s16le
+14:22:31.201 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - gif
+14:22:31.201 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_alaw
+14:22:31.202 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_u32be
+14:22:31.202 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - rv10
+14:22:31.202 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - adpcm_ima_wav
+14:22:31.202 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pgmyuv
+14:22:31.202 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - real_144
+14:22:31.202 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - xsub
+14:22:31.202 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - adpcm_ima_qt
+14:22:31.202 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_u24le
+14:22:31.202 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - jpegls
+14:22:31.202 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - snow
+14:22:31.202 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pgm
+14:22:31.202 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - adpcm_adx
+14:22:31.202 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - v210
+14:22:31.202 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - a64multi
+14:22:31.202 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - png
+14:22:31.202 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - libx264
+14:22:31.202 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - rv20
+14:22:31.202 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - msmpeg4v2
+14:22:31.202 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_s24daud
+14:22:31.202 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - a64multi5
+14:22:31.202 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - h263p
+14:22:31.202 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - ffv1
+14:22:31.202 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - msmpeg4
+14:22:31.202 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_s24be
+14:22:31.202 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - libvpx
+14:22:31.202 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - ass
+14:22:31.202 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - sonicls
+14:22:31.202 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_s24le
+14:22:31.202 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - roq_dpcm
+14:22:31.203 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - dvbsub
+14:22:31.203 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mp2
+14:22:31.203 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_f32be
+14:22:31.203 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - wmv2
+14:22:31.203 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - h263
+14:22:31.203 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - sonic
+14:22:31.203 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - ppm
+14:22:31.203 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - ljpeg
+14:22:31.203 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - dvdsub
+14:22:31.203 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - sgi
+14:22:31.203 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - libspeex
+14:22:31.203 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - dnxhd
+14:22:31.203 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - ac3
+14:22:31.203 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_f32le
+14:22:31.203 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - vorbis
+14:22:31.203 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_zork
+14:22:31.203 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_s32le
+14:22:31.203 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - flashsv2
+14:22:31.203 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_s32be
+14:22:31.203 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_f64be
+14:22:31.203 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - wmv1
+14:22:31.203 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - adpcm_swf
+14:22:31.203 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - mjpeg
+14:22:31.203 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - libvorbis
+14:22:31.203 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - asv1
+14:22:31.203 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_u32le
+14:22:31.203 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - ffvhuff
+14:22:31.203 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - alac
+14:22:31.203 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_f64le
+14:22:31.204 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - huffyuv
+14:22:31.204 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - adpcm_yamaha
+14:22:31.204 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - g726
+14:22:31.204 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - libtheora
+14:22:31.204 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - msvideo1
+14:22:31.204 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - flashsv
+14:22:31.204 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - ac3_fixed
+14:22:31.204 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - pcm_u8
+14:22:31.204 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - dpx
+14:22:31.204 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - qtrle
+14:22:31.204 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - asv2
+14:22:31.204 [main] INFO  o.i.t.t.c.GetXuggleSupportTest - End all codecs
+
+14:22:31.204 [main] INFO  o.i.t.t.c.GetXuggleSupportTest - Get subtitle codecs
+14:22:31.210 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - dvbsub
+14:22:31.210 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - dvdsub
+14:22:31.210 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - ass
+14:22:31.211 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - xsub
+14:22:31.211 [main] DEBUG o.i.t.t.c.GetXuggleSupportTest - srt
+14:22:31.211 [main] INFO  o.i.t.t.c.GetXuggleSupportTest - End sub codecs
+
+14:22:31.212 [main] DEBUG o.i.t.transcoder.input.VideoGetter - Getting http://www.blender.org/fileadmin/movies/softboy.avi and saving to rsc/tmp/tmp1.mp4
+14:22:36.081 [main] DEBUG o.i.t.transcoder.input.VideoGetter - Getting http://codenarc.sourceforge.net/codenarc-rules-junit.html and saving to rsc/tmp/tmp2.mp4
+14:22:36.880 [main] INFO  o.i.t.transcoder.tasks.TaskManager - Launched task....0, there are 0 pending tasks.
+14:22:36.882 [Thread-1] INFO  o.i.t.t.transco.NewTranscoder - Transcoding Task 0 started
+14:22:36.882 [Thread-1] DEBUG o.i.t.t.transco.NewTranscoder - File original: /home/javi/workspace/Transcoder/rsc/tmp/tmp1.mp4
+14:22:36.884 [Thread-1] INFO  o.i.t.t.transco.NewTranscoder - Subtask: 0
+14:22:38.133 [Thread-1] DEBUG o.i.t.t.transco.NewTranscoder - File deinterlaced: /home/javi/workspace/Transcoder/rsc/tmp/tmp1.mp4-deinterlaced-10.mp4
+14:22:38.134 [Thread-1] DEBUG o.i.t.t.transco.NewTranscoder - src file /home/javi/workspace/Transcoder/rsc/tmp/tmp1.mp4-deinterlaced-10.mp4
+14:22:38.134 [Thread-1] DEBUG o.i.t.t.transco.NewTranscoder - dst file /home/javi/workspace/Transcoder/rsc/tmp/out.mp4
+14:22:41.014 [Thread-1] INFO  o.i.t.t.transco.NewTranscoder - Transcoding Task 0 finished
+14:22:41.015 [Thread-1] INFO  o.i.t.transcoder.tasks.TaskManager - Finished task......0
+14:22:42.004 [main] INFO  o.i.t.transcoder.tasks.TaskManager - Launched task....0, there are 0 pending tasks.
+14:22:42.012 [main] INFO  o.i.t.transcoder.tasks.TaskManager - Launched task....1, there are 0 pending tasks.
+14:22:42.013 [Thread-2] INFO  o.i.t.t.transco.NewTranscoder - Transcoding Task 0 started
+14:22:42.013 [Thread-2] DEBUG o.i.t.t.transco.NewTranscoder - File original: /home/javi/workspace/Transcoder/test.dv
+14:22:42.020 [Thread-2] INFO  o.i.t.t.transco.NewTranscoder - Subtask: 0
+14:22:42.021 [Thread-3] INFO  o.i.t.t.transco.NewTranscoder - Transcoding Task 1 started
+14:22:42.021 [Thread-3] DEBUG o.i.t.t.transco.NewTranscoder - File original: /home/javi/workspace/Transcoder/test.dv
+14:22:42.022 [Thread-3] INFO  o.i.t.t.transco.NewTranscoder - Transcoding Task 1 finished
+14:22:42.024 [Thread-3] INFO  o.i.t.transcoder.tasks.TaskManager - Finished task......1
+14:22:45.068 [Thread-2] DEBUG o.i.t.t.transco.NewTranscoder - File deinterlaced: /home/javi/workspace/Transcoder/test.dv-deinterlaced-15.dv
+14:22:45.068 [Thread-2] DEBUG o.i.t.t.transco.NewTranscoder - src file /home/javi/workspace/Transcoder/test.dv-deinterlaced-15.dv
+14:22:45.068 [Thread-2] DEBUG o.i.t.t.transco.NewTranscoder - dst file /home/javi/workspace/Transcoder/rsc/tmp/tmp1.mp4
+14:22:45.163 [Finalizer] DEBUG com.xuggle.xuggler - Closing dangling Container (../../../../../csrc/com/xuggle/xuggler/Container.cpp:85)
+14:22:45.164 [Thread-2] DEBUG com.xuggle.xuggler - Closing dangling Container (../../../../../csrc/com/xuggle/xuggler/Container.cpp:85)
+14:22:50.602 [Thread-2] INFO  o.i.t.t.transco.NewTranscoder - Subtask: 2
+14:22:50.602 [Thread-2] DEBUG o.i.t.t.transco.NewTranscoder - src file /home/javi/workspace/Transcoder/test.dv
+14:22:50.602 [Thread-2] DEBUG o.i.t.t.transco.NewTranscoder - dst file /home/javi/workspace/Transcoder/rsc/tmp/tmp3.mp4
+14:23:01.262 [Thread-2] INFO  o.i.t.t.transco.NewTranscoder - Subtask: 1
+14:23:01.262 [Thread-2] DEBUG o.i.t.t.transco.NewTranscoder - No deinterlacing needed, file already exists
+14:23:01.262 [Thread-2] DEBUG o.i.t.t.transco.NewTranscoder - src file /home/javi/workspace/Transcoder/test.dv-deinterlaced-15.dv
+14:23:01.262 [Thread-2] DEBUG o.i.t.t.transco.NewTranscoder - dst file /home/javi/workspace/Transcoder/rsc/tmp/tmp2.mp4
+14:23:03.875 [Thread-2] INFO  o.i.t.t.transco.NewTranscoder - Transcoding Task 0 finished
+14:23:03.884 [Thread-2] INFO  o.i.t.transcoder.tasks.TaskManager - Finished task......0
+PROCESSED_OK
+PROCESSED_WITH_PROBLEMS
+PROCESSED_OK
+14:23:04.043 [main] INFO  o.i.t.transcoder.transco.QueueTest - Finnished!
+14:23:04.096 [main] DEBUG o.i.t.t.analysis.GetContainerInfo - width:720
+14:23:04.096 [main] DEBUG o.i.t.t.analysis.GetContainerInfo - height:576
+14:23:04.097 [main] INFO  o.i.t.t.transco.NewTranscoder - Transcoding Task 0 started
+14:23:04.097 [main] DEBUG o.i.t.t.transco.NewTranscoder - File original: /home/javi/workspace/Transcoder/test.dv
+14:23:04.097 [main] INFO  o.i.t.t.transco.NewTranscoder - Subtask: 0
+14:23:07.136 [main] DEBUG o.i.t.t.transco.NewTranscoder - File deinterlaced: /home/javi/workspace/Transcoder/test.dv-deinterlaced-1.dv
+14:23:07.136 [main] DEBUG o.i.t.t.transco.NewTranscoder - src file /home/javi/workspace/Transcoder/test.dv-deinterlaced-1.dv
+14:23:07.136 [main] DEBUG o.i.t.t.transco.NewTranscoder - dst file /home/javi/workspace/Transcoder/rsc/tmp/tmp0.webm
+14:23:23.431 [main] INFO  o.i.t.t.transco.NewTranscoder - Transcoding Task 0 finished
+14:23:23.440 [main] INFO  o.i.t.t.transco.NewTranscoder - Transcoding Task 1 started
+14:23:23.440 [main] DEBUG o.i.t.t.transco.NewTranscoder - File original: /home/javi/workspace/Transcoder/test.dv
+14:23:23.441 [main] INFO  o.i.t.t.transco.NewTranscoder - Subtask: 0
+14:23:26.345 [main] DEBUG o.i.t.t.transco.NewTranscoder - File deinterlaced: /home/javi/workspace/Transcoder/test.dv-deinterlaced-1.dv
+14:23:26.346 [main] DEBUG o.i.t.t.transco.NewTranscoder - src file /home/javi/workspace/Transcoder/test.dv-deinterlaced-1.dv
+14:23:26.346 [main] DEBUG o.i.t.t.transco.NewTranscoder - dst file /home/javi/workspace/Transcoder/rsc/tmp/tmp1.mp4
+14:23:29.749 [main] INFO  o.i.t.t.transco.NewTranscoder - Transcoding Task 1 finished
+14:23:29.759 [main] INFO  o.i.t.t.transco.NewTranscoder - Transcoding Task 2 started
+14:23:29.759 [main] DEBUG o.i.t.t.transco.NewTranscoder - File original: /home/javi/workspace/Transcoder/test.dv
+14:23:29.760 [main] INFO  o.i.t.t.transco.NewTranscoder - Subtask: 0
+14:23:32.658 [main] DEBUG o.i.t.t.transco.NewTranscoder - File deinterlaced: /home/javi/workspace/Transcoder/test.dv-deinterlaced-1.dv
+14:23:32.658 [main] DEBUG o.i.t.t.transco.NewTranscoder - src file /home/javi/workspace/Transcoder/test.dv-deinterlaced-1.dv
+14:23:32.658 [main] DEBUG o.i.t.t.transco.NewTranscoder - dst file /home/javi/workspace/Transcoder/rsc/tmp/tmp2.mp4
+14:23:34.725 [main] INFO  o.i.t.t.transco.NewTranscoder - Transcoding Task 2 finished
+14:23:34.737 [main] INFO  o.i.t.t.transco.NewTranscoder - Transcoding Task 3 started
+14:23:34.737 [main] DEBUG o.i.t.t.transco.NewTranscoder - File original: /home/javi/workspace/Transcoder/test.dv
+14:23:34.738 [main] INFO  o.i.t.t.transco.NewTranscoder - Subtask: 0
+14:23:37.618 [main] DEBUG o.i.t.t.transco.NewTranscoder - File deinterlaced: /home/javi/workspace/Transcoder/test.dv-deinterlaced-1.dv
+14:23:37.619 [main] DEBUG o.i.t.t.transco.NewTranscoder - src file /home/javi/workspace/Transcoder/test.dv-deinterlaced-1.dv
+14:23:37.619 [main] DEBUG o.i.t.t.transco.NewTranscoder - dst file /home/javi/workspace/Transcoder/rsc/tmp/tmp3.mp4
+14:23:38.323 [main] DEBUG com.xuggle.xuggler - Closing dangling Container (../../../../../csrc/com/xuggle/xuggler/Container.cpp:85)
+14:23:42.722 [main] INFO  o.i.t.t.transco.NewTranscoder - Transcoding Task 3 finished
+14:23:42.739 [main] INFO  o.i.t.t.transco.NewTranscoder - Transcoding Task 4 started
+14:23:42.739 [main] DEBUG o.i.t.t.transco.NewTranscoder - File original: /home/javi/workspace/Transcoder/test.dv
+14:23:42.740 [main] INFO  o.i.t.t.transco.NewTranscoder - Subtask: 0
+14:23:45.630 [main] DEBUG o.i.t.t.transco.NewTranscoder - File deinterlaced: /home/javi/workspace/Transcoder/test.dv-deinterlaced-1.dv
+14:23:45.631 [main] DEBUG o.i.t.t.transco.NewTranscoder - src file /home/javi/workspace/Transcoder/test.dv-deinterlaced-1.dv
+14:23:45.631 [main] DEBUG o.i.t.t.transco.NewTranscoder - dst file /home/javi/workspace/Transcoder/rsc/tmp/tmp4.mp4
+14:23:48.125 [main] INFO  o.i.t.t.transco.NewTranscoder - Transcoding Task 4 finished
+14:23:48.135 [main] INFO  o.i.t.t.transco.NewTranscoder - Transcoding Task 5 started
+14:23:48.135 [main] DEBUG o.i.t.t.transco.NewTranscoder - File original: /home/javi/workspace/Transcoder/test.dv
+14:23:48.136 [main] INFO  o.i.t.t.transco.NewTranscoder - Subtask: 0
+14:23:51.016 [main] DEBUG o.i.t.t.transco.NewTranscoder - File deinterlaced: /home/javi/workspace/Transcoder/test.dv-deinterlaced-1.dv
+14:23:51.016 [main] DEBUG o.i.t.t.transco.NewTranscoder - src file /home/javi/workspace/Transcoder/test.dv-deinterlaced-1.dv
+14:23:51.016 [main] DEBUG o.i.t.t.transco.NewTranscoder - dst file /home/javi/workspace/Transcoder/rsc/tmp/tmp5.mp4
+14:23:56.086 [main] INFO  o.i.t.t.transco.NewTranscoder - Transcoding Task 5 finished
+14:23:56.096 [main] INFO  o.i.t.t.transco.NewTranscoder - Transcoding Task 6 started
+14:23:56.096 [main] DEBUG o.i.t.t.transco.NewTranscoder - File original: /home/javi/workspace/Transcoder/test.dv
+14:23:56.097 [main] INFO  o.i.t.t.transco.NewTranscoder - Subtask: 0
+14:23:59.154 [main] DEBUG o.i.t.t.transco.NewTranscoder - File deinterlaced: /home/javi/workspace/Transcoder/test.dv-deinterlaced-1.dv
+14:23:59.154 [main] DEBUG o.i.t.t.transco.NewTranscoder - src file /home/javi/workspace/Transcoder/test.dv-deinterlaced-1.dv
+14:23:59.154 [main] DEBUG o.i.t.t.transco.NewTranscoder - dst file /home/javi/workspace/Transcoder/rsc/tmp/tmp6.mp4
+14:24:01.581 [main] INFO  o.i.t.t.transco.NewTranscoder - Transcoding Task 6 finished
+14:24:01.591 [main] DEBUG o.i.t.t.transco.TransLoadTest - Task not executed due CPU load: 1.42
+14:24:03.591 [main] DEBUG o.i.t.t.transco.TransLoadTest - Task not executed due CPU load: 1.42
+14:24:05.592 [main] DEBUG o.i.t.t.transco.TransLoadTest - Task not executed due CPU load: 1.31
+14:24:07.593 [main] DEBUG o.i.t.t.transco.TransLoadTest - Task not executed due CPU load: 1.31
+14:24:09.593 [main] DEBUG o.i.t.t.transco.TransLoadTest - Task not executed due CPU load: 1.31
+14:24:11.594 [main] DEBUG o.i.t.t.transco.TransLoadTest - Finished, executed 0/5 tasks
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

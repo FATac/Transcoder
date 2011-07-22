@@ -1,0 +1,23 @@
+package org.i2cat.tapies.transcoder.analysis;
+
+//File name: $HeadURL$
+//Revision: $Revision$
+//Last modified: $Date$
+//Modified by: $Author$
+import java.io.IOException;
+
+import org.junit.Test;
+
+
+public class GetContainerInfoTest {
+
+	/*
+	 * Take the info of the container 
+	 */
+	@Test
+	public void getContainerInfo() throws IOException {
+		GetContainerInfo info = new GetContainerInfo();
+		info.printInfo("test.dv");
+	}
+
+}

@@ -1,0 +1,335 @@
+package org.i2cat.tapies.transcoder.entities;
+
+import java.util.List;
+import java.util.Vector;
+
+import org.i2cat.tapies.transcoder.transco.extras.tools.TapiesTool;
+
+//File name: $HeadURL: http://svn.i2cat.net/repos/Tapies/Transcoder/src/org/i2cat/tapies/transcoder/entities/SubTaskInputParameters.java $
+//Revision: $Revision: 214 $
+//Last modified: $Date: 2011-06-07 12:06:00 +0200 (Tue, 07 Jun 2011) $
+//Modified by: $Author: javier_lopez $
+/**
+ * Wrapper for the main transcoding parameters of a {@link SubTask}.
+ * 
+ * @author $Author: javier_lopez $
+ * @version $Revision: 214 $
+ * 
+ */
+public class SubTaskInputParameters {
+
+	/**
+	 * String with where to generate the copy of the processed video.
+	 */
+	private String outVideoPath = "";
+	/**
+	 * String with what container is desired for processing the video.
+	 */
+	private String container;
+	/**
+	 * String with the video codec desired for processing the video.
+	 */
+	private String videoCodec;
+	/**
+	 * String with the frames per second desired.
+	 */
+	private String fps;
+	/**
+	 * boolean to know if the video has to be deinterlaced or not.
+	 */
+	private boolean deinterlace;
+	/**
+	 * String with the width desired.
+	 */
+	private String width;
+	/**
+	 * String with the height desired.
+	 */
+	private String height;
+	/**
+	 * String with the video bitrate desired.
+	 */
+	private String videoBitrate;
+	/**
+	 * String with the video bitrate tolerance desired.
+	 */
+	private String videoBitrateTolerance;
+	/**
+	 * String with the aspectratio.
+	 */
+	private String aspectratio;
+	/**
+	 * String with the audio codec desired.
+	 */
+	private String audioCodec;
+	/**
+	 * String with the audio bitrate desired.
+	 */
+	private String audioBitrate;
+	/**
+	 * String with the audio channels desired.
+	 */
+	private String audioChannels;
+	/**
+	 * String with the audio sample rate desired.
+	 */
+	private String audioSampleRate;
+	/**
+	 * String with a optional preset file for the transcoding process.
+	 */
+	private String presetFile = "";
+	/**
+	 * A list of {@link TapiesTool} with the tools that will be applied to the
+	 * video transcode.
+	 */
+	private List<TapiesTool> tools = new Vector<TapiesTool>();
+
+	/**
+	 * @return the outVideoPath
+	 */
+	public String getOutVideoPath() {
+		return outVideoPath;
+	}
+
+	/**
+	 * @param outVideoPath
+	 *            the outVideoPath to set
+	 */
+	public void setOutVideoPath(String outVideoPath) {
+		this.outVideoPath = outVideoPath;
+	}
+
+	/**
+	 * @return the container
+	 */
+	public String getContainer() {
+		return container;
+	}
+
+	/**
+	 * @param container
+	 *            the container to set
+	 */
+	public void setContainer(String container) {
+		this.container = container;
+	}
+
+	/**
+	 * @return the videoCodec
+	 */
+	public String getVideoCodec() {
+		return videoCodec;
+	}
+
+	/**
+	 * @param videoCodec
+	 *            the videoCodec to set
+	 */
+	public void setVideoCodec(String videoCodec) {
+		this.videoCodec = videoCodec;
+	}
+
+	/**
+	 * @return the fps
+	 */
+	public String getFps() {
+		return fps;
+	}
+
+	/**
+	 * @param fps
+	 *            the fps to set
+	 */
+	public void setFps(String fps) {
+		this.fps = fps;
+	}
+
+	/**
+	 * @return the deinterlace
+	 */
+	public boolean isDeinterlace() {
+		return deinterlace;
+	}
+
+	/**
+	 * @param deinterlace
+	 *            the deinterlace to set
+	 */
+	public void setDeinterlace(boolean deinterlace) {
+		this.deinterlace = deinterlace;
+	}
+
+	/**
+	 * @return the width
+	 */
+	public String getWidth() {
+		return width;
+	}
+
+	/**
+	 * @param width
+	 *            the width to set
+	 */
+	public void setWidth(String width) {
+		this.width = width;
+	}
+
+	/**
+	 * @return the height
+	 */
+	public String getHeight() {
+		return height;
+	}
+
+	/**
+	 * @param height
+	 *            the height to set
+	 */
+	public void setHeight(String height) {
+		this.height = height;
+	}
+
+	/**
+	 * @return the videoBitrate
+	 */
+	public String getVideoBitrate() {
+		return videoBitrate;
+	}
+
+	/**
+	 * @param videoBitrate
+	 *            the videoBitrate to set
+	 */
+	public void setVideoBitrate(String videoBitrate) {
+		this.videoBitrate = videoBitrate;
+	}
+
+	/**
+	 * @return the videoBitrateTolerance
+	 */
+	public String getVideoBitrateTolerance() {
+		return videoBitrateTolerance;
+	}
+
+	/**
+	 * @param videoBitrateTolerance
+	 *            the videoBitrateTolerance to set
+	 */
+	public void setVideoBitrateTolerance(String videoBitrateTolerance) {
+		this.videoBitrateTolerance = videoBitrateTolerance;
+	}
+
+	/**
+	 * @return the aspectratio
+	 */
+	public String getAspectratio() {
+		return aspectratio;
+	}
+
+	/**
+	 * @param aspectratio
+	 *            the aspectratio to set
+	 */
+	public void setAspectratio(String aspectratio) {
+		this.aspectratio = aspectratio;
+	}
+
+	/**
+	 * @return the audioCodec
+	 */
+	public String getAudioCodec() {
+		return audioCodec;
+	}
+
+	/**
+	 * @param audioCodec
+	 *            the audioCodec to set
+	 */
+	public void setAudioCodec(String audioCodec) {
+		this.audioCodec = audioCodec;
+	}
+
+	/**
+	 * @return the audioBitrate
+	 */
+	public String getAudioBitrate() {
+		return audioBitrate;
+	}
+
+	/**
+	 * @param audioBitrate
+	 *            the audioBitrate to set
+	 */
+	public void setAudioBitrate(String audioBitrate) {
+		this.audioBitrate = audioBitrate;
+	}
+
+	/**
+	 * @return the audioChannels
+	 */
+	public String getAudioChannels() {
+		return audioChannels;
+	}
+
+	/**
+	 * @param audioChannels
+	 *            the audioChannels to set
+	 */
+	public void setAudioChannels(String audioChannels) {
+		this.audioChannels = audioChannels;
+	}
+
+	/**
+	 * @return the audioSampleRate
+	 */
+	public String getAudioSampleRate() {
+		return audioSampleRate;
+	}
+
+	/**
+	 * @param audioSampleRate
+	 *            the audioSampleRate to set
+	 */
+	public void setAudioSampleRate(String audioSampleRate) {
+		this.audioSampleRate = audioSampleRate;
+	}
+
+	/**
+	 * @return the presetFile
+	 */
+	public String getPresetFile() {
+		return presetFile;
+	}
+
+	/**
+	 * @param presetFile
+	 *            the presetFile to set
+	 */
+	public void setPresetFile(String presetFile) {
+		this.presetFile = presetFile;
+	}
+	
+	public List<TapiesTool> getTools() {
+		return tools;
+	}
+
+	
+	public int putTool(TapiesTool tool) {
+		tools.add(tool);
+		return 0;
+	}
+
+	public void cleanConfigTools() {
+		for (TapiesTool t : tools) {
+			t.cleanConfig();			
+		}
+		
+	}
+
+	public void clearTools() {
+		tools.clear();
+	}
+
+
+
+}

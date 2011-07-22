@@ -1,0 +1,103 @@
+package org.i2cat.tapies.transcoder.entities;
+
+
+//File name: $HeadURL$
+//Revision: $Revision$
+//Last modified: $Date$
+//Modified by: $Author$
+/**
+ * Differents SubTask are intented to make different transcodes of the same
+ * original file. In order to achieve different grade of quality or to adapt the
+ * content to different devices.
+ * 
+ * Has a relation 1 to N with {@link TranscodingTask} ie one
+ * {@link TranscodingTask} can have N {@link SubTask}
+ * 
+ * @author $Author$
+ * @version $Revision$
+ * 
+ */
+public class SubTask {
+
+    public enum SubTaskStatus {NOT_LAUNCHED, LAUNCHED, DEINTERLACING, 
+    	SRC_DEFINED, PARSED, PROCESSED, PROBLEM_XUGGLE_ENV,
+    	PROBLEM_SRC_NOT_FOUND, PROBLEM_DEINTERLANCING, PROBLEM_PARSING, 
+    	PROBLEM_CONVERTING, PROBLEM_CODEC_COMBINATION}
+	
+	/**
+	 * Identifier of the subtask
+	 */
+	private int id;
+	
+	/**
+	 * Status of the subtask
+	 */
+	private SubTaskStatus status = SubTaskStatus.NOT_LAUNCHED;
+	/**
+	 * Object that wraps the input parameters for this {@link SubTask}
+	 */
+	private SubTaskInputParameters inparameters = new SubTaskInputParameters();
+
+	/**
+	 * Object that wraps the output parameters for this {@link SubTask}
+	 */
+	private SubTaskOutputResults outparameters = new SubTaskOutputResults();
+
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+
+	/**
+	 * @param id
+	 *            the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the inparameters
+	 */
+	public SubTaskInputParameters getInparameters() {
+		return inparameters;
+	}
+
+	/**
+	 * @param inparameters
+	 *            the inparameters to set
+	 */
+	public void setInparameters(SubTaskInputParameters inparameters) {
+		this.inparameters = inparameters;
+	}
+
+	/**
+	 * @return the outparameters
+	 */
+	public SubTaskOutputResults getOutparameters() {
+		return outparameters;
+	}
+
+	/**
+	 * @param outparameters
+	 *            the outparameters to set
+	 */
+	public void setOutparameters(SubTaskOutputResults outparameters) {
+		this.outparameters = outparameters;
+	}
+
+	public void setStatus(SubTaskStatus status) {
+		this.status = status;
+	}
+
+	public SubTaskStatus getStatus() {
+		return status;
+	}
+	
+	public int getStatusIntValue() {
+		return status.ordinal();
+	}
+
+}

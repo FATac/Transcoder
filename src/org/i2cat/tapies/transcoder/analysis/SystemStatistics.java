@@ -1,0 +1,214 @@
+package org.i2cat.tapies.transcoder.analysis;
+
+//File name: $HeadURL: http://svn.i2cat.net/repos/Tapies/Transcoder/src/org/i2cat/tapies/transcoder/analysis/SystemStatistics.java $
+//Revision: $Revision: 183 $
+//Last modified: $Date: 2011-05-05 15:31:32 +0200 (Thu, 05 May 2011) $
+//Modified by: $Author: javier_lopez $
+import java.io.File;
+import java.lang.management.*;
+
+/**
+ * Class that provides system statistics.
+ * 
+ * @author $Author: javier_lopez $
+ * @version $Revision: 183 $
+ * 
+ */
+public class SystemStatistics {
+
+	private static SystemStatistics instance = null;
+	/**
+	 * A counter for the processed videos.
+	 */
+	private int videosProcessed = 0;
+
+	/**
+	 * Total file size
+	 */
+	private long totalFileSize;
+
+	/**
+	 * A counter for the medium time to transcode a video.
+	 */
+	private float totalTranscodeTime;
+
+	/**
+	 * @return the videosProcessed
+	 */
+	public int getVideosProcessed() {
+		return videosProcessed;
+	}
+
+	/**
+	 * @param videosProcessed
+	 *            the videosProcessed to set
+	 */
+	public void setVideosProcessed(int videosProcessed) {
+		this.videosProcessed = videosProcessed;
+	}
+
+	/**
+	 * @return the totalFileSize
+	 */
+	public long getTotalFileSize() {
+		return totalFileSize;
+	}
+
+	/**
+	 * @param totalFileSize
+	 *            the totalFileSize to set
+	 */
+	public void setTotalFileSize(long totalFileSize) {
+		this.totalFileSize = totalFileSize;
+	}
+
+	/**
+	 * @return the totalTranscodeTime
+	 */
+	public float getTotalTranscodeTime() {
+		return totalTranscodeTime;
+	}
+
+	/**
+	 * @param totalTranscodeTime
+	 *            the totalTranscodeTime to set
+	 */
+	public void setTotalTranscodeTime(float totalTranscodeTime) {
+		this.totalTranscodeTime = totalTranscodeTime;
+	}
+
+	/**
+	 * Gives the average time to transcode.
+	 * 
+	 * @return the average time to transcode a video.
+	 */
+	public synchronized float averageTimeToTranscode() {
+		float timeto = getTotalTranscodeTime() / getVideosProcessed();
+		return timeto;
+	}
+
+	/**
+	 * Gives the average file size
+	 * 
+	 * @return the average file size in bytes
+	 */
+	public synchronized float averageFileSize() {
+		float total = Float.parseFloat(Long.toString(getTotalFileSize()));
+		return total / videosProcessed;
+	}
+
+	/**
+	 * Gives the average transcoding time per byte
+	 * 
+	 * @return the average transcode time per byte.
+	 */
+	public synchronized float transcodeTimePerByte() {
+		float timet = averageTimeToTranscode();
+		float avgfs = averageFileSize();
+		return timet / avgfs;
+	}
+
+	/**
+	 * Provides the number of available processors.
+	 * 
+	 * @return the available processors.
+	 */
+	public synchronized int availableProcessors() {
+		/* Total number of processors or cores available to the JVM */
+		return Runtime.getRuntime().availableProcessors();
+	}
+
+	/**
+	 * Get the ammount of free memory in the JVM.
+	 * 
+	 * @return the free memory in the JVM.
+	 */
+	public synchronized long freeMemory() {
+		/* Total amount of free memory available to the JVM */
+		return Runtime.getRuntime().freeMemory();
+	}
+
+	/**
+	 * Get the total used memory
+	 * 
+	 * @return the total used memory
+	 */
+	public synchronized long totalInUseMemory() {
+		return Runtime.getRuntime().totalMemory();
+	}
+
+	/**
+	 * Get the maximum memory available for the JVM.
+	 * 
+	 * @return
+	 */
+	public synchronized long maxMemoryAvailable() {
+		return Runtime.getRuntime().maxMemory();
+	}
+
+	/**
+	 * Prints the file system status (Total space, free space and usable space).
+	 */
+	public synchronized void getFileSystemStatus() {
+		/* Get a list of all filesystem roots on this system */
+		File[] roots = File.listRoots();
+
+		/* For each filesystem root, print some info */
+		for (File root : roots) {
+			System.out.println("File system root: " + root.getAbsolutePath());
+			System.out.println("Total space (bytes): " + root.getTotalSpace());
+			System.out.println("Free space (bytes): " + root.getFreeSpace());
+			System.out
+					.println("Usable space (bytes): " + root.getUsableSpace());
+		}
+	}
+
+	/** Get CPU time in nanoseconds. */
+	public synchronized long getCpuTime() {
+		ThreadMXBean bean = ManagementFactory.getThreadMXBean();
+		return bean.isCurrentThreadCpuTimeSupported() ? bean
+				.getCurrentThreadCpuTime() : 0L;
+	}
+
+	/** Get user time in nanoseconds. */
+	public synchronized long getUserTime() {
+		ThreadMXBean bean = ManagementFactory.getThreadMXBean();
+		return bean.isCurrentThreadCpuTimeSupported() ? bean
+				.getCurrentThreadUserTime() : 0L;
+	}
+
+	/** Get system time in nanoseconds. */
+	public synchronized long getSystemTime() {
+		ThreadMXBean bean = ManagementFactory.getThreadMXBean();
+		return bean.isCurrentThreadCpuTimeSupported() ? (bean
+				.getCurrentThreadCpuTime() - bean.getCurrentThreadUserTime())
+				: 0L;
+	}
+
+	/**
+	 * Get system load average
+	 * 
+	 * @return the average system load.
+	 */
+	public synchronized double getSystemLoadAverage() {
+		return java.lang.management.ManagementFactory
+				.getOperatingSystemMXBean().getSystemLoadAverage();
+	}
+
+	/**
+	 * Method to get the instnace of system statistics.
+	 * 
+	 * @return the unique instance of System Statistics.
+	 */
+	public static SystemStatistics getInstance() {
+		if (instance == null) {
+			instance = new SystemStatistics();
+		}
+		return instance;
+	}
+
+	private SystemStatistics() {
+
+	}
+
+}

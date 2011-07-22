@@ -1,0 +1,280 @@
+package org.i2cat.tapies.transcoder.transco;
+
+//File name: $HeadURL$
+//Revision: $Revision$
+//Last modified: $Date$
+//Modified by: $Author$
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+import java.util.Observable;
+import java.util.Vector;
+
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
+import org.i2cat.tapies.transcoder.analysis.SystemStatistics;
+import org.i2cat.tapies.transcoder.entities.SubTask;
+import org.i2cat.tapies.transcoder.entities.Task;
+import org.i2cat.tapies.transcoder.util.Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * Class to execute the transcode process.
+ * 
+ * @author $Author$
+ * @version $Revision$
+ * 
+ */
+public class Transcoder extends Observable {
+
+	/**
+	 * A logger for this class.
+	 */
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	/**
+	 * The {@link Task} to be executed.
+	 */
+
+	private Task task;
+
+	/**
+	 * An instance of a {@link TapiesConverter} to do the transcode stuff.
+	 */
+	private TapiesConverter converter = new TapiesConverter();
+
+	/**
+	 * Method to transcode a task
+	 * 
+	 * @param task
+	 *            The task to be transcoded.
+	 */
+	public void transcode(Task task) {
+		logger.info("Transcoding Task " + task.getId());
+		setTask(task);
+		// Load the parameters of the task.
+		String from = task.getCommonInputParameters().getOriginalVideoPath();
+		String ext = Util.getExtension(from);
+		String fromdeinterlaced = from + "-deinterlaced." + ext;
+
+		/*
+		 * Get file size:
+		 */
+		File f = new File(from);
+		long filesize = f.length();
+
+		float sums = 0;
+		// Execute every subtask of the task.
+		for (int i = 0; i < task.getSubTaskList().size(); i++) {
+			/*
+			 * Get initial statistics.
+			 */
+			long memory1 = SystemStatistics.getInstance().freeMemory();
+			double loadaverage1 = SystemStatistics.getInstance()
+					.getSystemLoadAverage();
+
+			// Subtask parameters
+			SubTask subtask = task.getSubTask(i);
+			String to = subtask.getInparameters().getOutVideoPath();
+
+			// Deinterlace if needed.
+			if (subtask.getInparameters().isDeinterlace()) {
+				long time1 = System.currentTimeMillis();
+				logger.debug("Deinterlacing video");
+				String XUGGLE_HOME = System.getenv("XUGGLE_HOME");
+				if (XUGGLE_HOME.isEmpty()) {
+					try {
+						throw new IOException("XUGGLE_HOME is not set");
+					} catch (IOException e) {
+						subtask.getOutparameters().addError(e.getLocalizedMessage());
+						e.printStackTrace();
+					}
+				} else {
+
+					/*
+					 * To deinterlace, we have to call Xuggle's compiled FFMPEG
+					 * because this option is not yet exposed in Xuggle.
+					 * 
+					 * To make the call we call like in a shell.
+					 */
+					ProcessBuilder proc = new ProcessBuilder();
+					proc.directory(new File(XUGGLE_HOME + "/bin"));
+					List<String> command = new Vector<String>();
+
+					command.add("ffmpeg");
+					command.add("-y");
+					command.add("-i");
+					command.add(from);
+					if (ext.equals("flv")) {
+						command.add("-ar");
+						command.add("44100");
+					}
+					command.add("-deinterlace");
+					command.add(fromdeinterlaced);
+					proc.command(command);
+					try {
+						proc.start().waitFor();
+					} catch (InterruptedException e) {
+						subtask.getOutparameters().addError(e.getLocalizedMessage());
+						e.printStackTrace();
+					} catch (IOException e) {
+						subtask.getOutparameters().addError(e.getLocalizedMessage());
+						e.printStackTrace();
+					}
+				}
+				from = fromdeinterlaced;
+				long time2 = System.currentTimeMillis();
+				long timet = time2 - time1;
+				logger.debug("Deinterlacing time " + timet + " ms");
+
+			} else {
+				logger.debug("No deinterlacing");
+			}
+
+			// Parse the parameters to pass it to converter.
+			String[] args = Util.parseParameters(subtask.getInparameters());
+			logger.info("Transcoding starts");
+			logger.debug("From file " + from);
+			logger.debug("to file " + to);
+
+			Long time1 = System.currentTimeMillis();
+			String[] args1 = new String[args.length + 2];
+			for (int j = 0; j < args1.length - 2; j++) {
+				args1[j] = args[j];
+			}
+			args1[args1.length - 2] = from;
+			args1[args1.length - 1] = to;
+			Options options = converter.defineOptions();
+			CommandLine commandLine = null;
+			try {
+				commandLine = converter.parseOptions(options, args1);
+			} catch (ParseException e) {
+				e.printStackTrace();
+				subtask.getOutparameters().addError(e.getLocalizedMessage());
+
+			}
+			// Set the tools.
+			converter.setTools(subtask.getInparameters().getTools());
+
+			try {
+				// Run the converter.
+				converter.run(commandLine);
+			} catch (Exception e) {
+				e.printStackTrace();
+				subtask.getOutparameters().addError(e.getLocalizedMessage());
+				e.printStackTrace();
+			}
+			/*
+			 * Final statistics.
+			 */
+
+			// Time to transcode
+			Long time2 = System.currentTimeMillis();
+			Long timet = (time2 - time1) / 1000;
+			subtask.getOutparameters().setTimetotranscode(
+					Long.parseLong(timet.toString()));
+
+			// Memory at the end.
+			long memory2 = SystemStatistics.getInstance().freeMemory();
+			double loadaverage2 = SystemStatistics.getInstance()
+					.getSystemLoadAverage();
+
+			// Add one video processed
+			SystemStatistics.getInstance().setVideosProcessed(
+					SystemStatistics.getInstance().getVideosProcessed() + 1);
+
+			// Add the filesize to later calculate the average
+			SystemStatistics.getInstance().setTotalFileSize(
+					SystemStatistics.getInstance().getTotalFileSize()
+							+ filesize);
+
+			// Add the time to transcode
+
+			SystemStatistics.getInstance().setTotalTranscodeTime(
+					SystemStatistics.getInstance().getTotalTranscodeTime()
+							+ timet);
+
+			/*
+			 * Consumed statistics.
+			 */
+			long memoryConsumed = memory2 - memory1;
+			double loadaverage = loadaverage2 - loadaverage1;
+
+			subtask.getOutparameters().setMemoryConsumed(memoryConsumed);
+			subtask.getOutparameters().setLoadAverage(loadaverage);
+
+			float memoryperbyte = (float) (Double.parseDouble(Long
+					.toString(memoryConsumed)) / filesize);
+
+			task.getSubTask(i).getOutparameters()
+					.setMemoryConsumedByByte(memoryperbyte);
+
+			float loadperbyte = Float.parseFloat(Double.toString(loadaverage))
+					/ filesize;
+
+			task.getSubTask(i).getOutparameters()
+					.setLoadByByte(loadperbyte);
+
+			sums = sums
+					+ task.getSubTask(i).getOutparameters()
+							.getTimetotranscode();
+		}
+
+		float average = 0;
+		float averagetime = sums / average;
+
+		task.getCommonOutputParameters().setAverageTimeToTranscode(averagetime);
+
+		// All the subtasks are ended, then notify it to the observer class.
+		setChanged();
+		notifyObservers(task);
+
+	}
+
+	/**
+	 * @return the logger
+	 */
+	public Logger getLogger() {
+		return logger;
+	}
+
+	/**
+	 * @param logger
+	 *            the logger to set
+	 */
+	public void setLogger(Logger logger) {
+		this.logger = logger;
+	}
+
+	/**
+	 * @return the task
+	 */
+	public Task getTask() {
+		return task;
+	}
+
+	/**
+	 * @param task
+	 *            the task to set
+	 */
+	public void setTask(Task task) {
+		this.task = task;
+	}
+
+	/**
+	 * @return the converter
+	 */
+	public TapiesConverter getConverter() {
+		return converter;
+	}
+
+	/**
+	 * @param converter
+	 *            the converter to set
+	 */
+	public void setConverter(TapiesConverter converter) {
+		this.converter = converter;
+	}
+
+}

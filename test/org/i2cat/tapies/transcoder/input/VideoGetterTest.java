@@ -1,0 +1,165 @@
+package org.i2cat.tapies.transcoder.input;
+
+//File name: $HeadURL: http://svn.i2cat.net/repos/Tapies/Transcoder/test/org/i2cat/tapies/transcoder/input/VideoGetterTest.java $
+//Revision: $Revision: 238 $
+//Last modified: $Date: 2011-07-14 13:48:08 +0200 (Thu, 14 Jul 2011) $
+//Modified by: $Author: javier_lopez $
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import org.i2cat.tapies.transcoder.analysis.GetContainerInfo;
+import org.i2cat.tapies.transcoder.entities.SubTask;
+import org.i2cat.tapies.transcoder.entities.SubTaskInputParameters;
+import org.i2cat.tapies.transcoder.entities.TaskInputParameters;
+import org.i2cat.tapies.transcoder.entities.TranscodingTask;
+import org.i2cat.tapies.transcoder.tasks.TaskManager;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+public class VideoGetterTest {
+
+	private static String videoURL = "http://www.blender.org/fileadmin/movies/softboy.avi";//"http://www.yo-yo.org/mp4/yu.mp4";
+	private static String videoTmpFilePath = "rsc/tmp/tmp1.mp4";
+	private static String nonVideoURL = "http://codenarc.sourceforge.net/codenarc-rules-junit.html";
+	private static String nonVideoTmpFilePath = "rsc/tmp/tmp2.mp4";
+	private static String transcodedVideoFilePath = "rsc/tmp/out.mp4";
+	
+	@BeforeClass
+	public static void setUp() {
+		// Do tmp folder cleanup before starting these tests
+		File f = new File(videoTmpFilePath);
+		if (f.exists())
+			f.delete();
+		
+		f = new File(nonVideoTmpFilePath);
+		if (f.exists())
+			f.delete();
+		
+		f = new File(transcodedVideoFilePath);
+		if (f.exists())
+			f.delete();
+		
+	}
+
+	/*
+	 * Download some files from a url
+	 */
+	@Test
+	public void getVideosFromURL() {
+
+		try {
+
+			new VideoGetter().getVideoHTTP(
+					videoURL,
+					videoTmpFilePath);
+			
+		} catch (FileNotFoundException e) {
+			Assert.fail("The file to download is not accesible");
+		} catch (IOException e) {
+			Assert.fail("Problem with download folder");
+		}
+		
+		try {
+
+			new VideoGetter().getVideoHTTP(
+					nonVideoURL,
+					nonVideoTmpFilePath);
+			
+		} catch (FileNotFoundException e) {
+			Assert.fail("The file to download is not accesible");
+		} catch (IOException e) {
+			Assert.fail("Problem with download folder");
+		}
+	}
+
+	/*
+	 * Download video from a url and check it is a video
+	 */
+	@Test
+	public void checkDownloadedVideos() {
+
+		// Checking if a video is a video ;-)
+		File file = new File(videoTmpFilePath);
+		if(!file.exists())
+			Assert.fail(videoTmpFilePath + " doesn't exists!");
+
+		GetContainerInfo streams = new GetContainerInfo();
+		boolean isvideo = streams.checkContainer(videoTmpFilePath);
+
+		// We spect that the video is a video, Assert if it's not!!!!
+		Assert.assertTrue(videoTmpFilePath + " is not a video", isvideo);
+		
+		// Checking if a nonVideo is a video
+		file = new File(nonVideoTmpFilePath);
+		if(!file.exists())
+			Assert.fail(nonVideoTmpFilePath + " doesn't exists!");
+
+		streams = new GetContainerInfo();
+		isvideo = streams.checkContainer(nonVideoTmpFilePath);
+
+		// We spect that the video is not a video, Assert if it's !!!!
+		Assert.assertFalse(nonVideoTmpFilePath + " is a video", isvideo);
+		
+		// Now we can delete the nonVideoFile
+		file.delete();
+	}
+
+	/*
+	 * Download video from a url and check it's a video and it's a video do a
+	 * transcode task
+	 */
+	@Test
+	public void executeTaskFromDownloadedVideo() throws Exception {
+
+		File file = new File(videoTmpFilePath);
+		
+		TranscodingTask tt = new TranscodingTask();
+		TaskInputParameters cip = new TaskInputParameters();
+		cip.setOriginalVideoPath(file.getAbsolutePath());
+		tt.setCommonInputParameters(cip);
+
+		SubTask subtask = new SubTask();
+		SubTaskInputParameters sip = new SubTaskInputParameters();
+		
+		String cont = "mp4";
+		File fileOut = new File(transcodedVideoFilePath);
+
+		sip.setOutVideoPath(fileOut.getAbsolutePath());
+		sip.setContainer(cont);
+
+		// Audio
+		sip.setAudioBitrate("128000");
+		sip.setAudioChannels("2");
+		sip.setAudioCodec("libfaac");
+		sip.setAudioSampleRate("44100");
+
+		// Video
+		sip.setDeinterlace(true);
+		sip.setFps("25");
+		sip.setVideoBitrate("1000000");
+		sip.setVideoCodec("libx264");
+		sip.setVideoBitrateTolerance("100000");
+		
+		sip.setPresetFile("h264presets.txt");
+
+		subtask.setInparameters(sip);
+
+		subtask.setId(0);
+		tt.putSubTask(subtask);
+		TaskManager.getInstance().enqueueNewTask(tt);
+
+		while(TaskManager.getInstance().inQueueWaiting() 
+				|| TaskManager.getInstance().getRunningTasks() != 0) {
+			Thread.sleep(1000);
+		}
+		// FileOut MUST exist!
+		Assert.assertTrue(transcodedVideoFilePath + " doesn't exists", fileOut.exists());
+		
+		// We can delete the files
+		file.delete();
+		fileOut.delete();
+	}
+
+}
